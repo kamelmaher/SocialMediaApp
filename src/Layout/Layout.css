@@ -1,0 +1,19 @@
+.main-layout {
+    padding: 7px 16px;
+}
+
+.d-flex {
+    align-items: center !important;
+}
+
+.search {
+    color: #65676b;
+    background-color: #f0f2f5;
+    padding: 7px 10px;
+    border-radius: 20px;
+    font-size: 15px;
+    font-weight: 400;
+}
+.search-text {
+    width: 150px;
+}
