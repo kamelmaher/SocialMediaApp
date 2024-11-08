@@ -1,0 +1,12 @@
+.homepage {
+    background-color: white;
+}
+.post-input {
+    border-radius: 16px;
+}
+.post-img {
+    width: 50px;
+}
+.post-text {
+    width: 100%;
+}
