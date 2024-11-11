@@ -18,7 +18,7 @@ const Layout = () => {
     const navigate = useNavigate();
     return (
         <div className="main-layout">
-            <div className="row justify-content-between ps-3 pe-3 my-card">
+            <div className="row justify-content-between ps-3 pe-3 app-nav">
                 <div className="col-3 d-flex gap-2 pb-2 logo">
                     <div>
                         <img src={logo} alt="" style={{
@@ -65,20 +65,19 @@ const Layout = () => {
                     </div>
                 </div>
             </div>
-            <div className="container ps-0 pe-0">
-                <div className="row pt-3 justify-content-center p-md-3 p-0">
-                    <div className="col-3 d-none d-lg-block">
-                        <ListContainer />
-                    </div>
-                    <div className="col-12 col-md-8 col-lg-5 col-8">
+            <div className="row pt-3 justify-content-lg-between justify-content-center p-md-3 p-0">
+                <div className="col-3 d-none d-lg-block">
+                    <ListContainer />
+                </div>
+                <div className="col-12 col-lg-6 col-sm-9 d-flex justify-content-center align-items-start">
+                    <div className="pt-3">
                         <Outlet />
                     </div>
-                    <div className="col-3 d-none d-lg-block">
-                        <AdPage />
-                    </div>
+                </div>
+                <div className="col-3 d-none d-lg-block">
+                    <AdPage />
                 </div>
             </div>
-
         </div>
     )
 }

@@ -1,11 +1,20 @@
-.stories {
-    max-width: 100%;
-}
+
 .my-story ,.story {
-    height: 185px;
+    height: 200px;
     overflow: hidden;
     border-radius: 8px;
     position: relative;
+    width: 112px;
+    padding: 0 10px 0;
+
+}
+@media (max-width: 576px) {
+    .my-story, .story {
+        width: calc(100% / 4 - 5px);
+        background-color: red;
+        margin-left: 2px;
+        height: 150px;
+    }
 }
 .my-story img , .story .img , .story img {
     height: 100%;

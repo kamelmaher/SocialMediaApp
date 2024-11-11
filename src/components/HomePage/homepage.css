@@ -1,4 +1,6 @@
-.homepage {}
+.homepage {
+    width: 500px !important;
+}
 
 .post-input {
     border-radius: 16px;
