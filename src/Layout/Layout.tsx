@@ -27,7 +27,7 @@ const Layout = () => {
                     </div>
                     <SearchComponent />
                 </div>
-                <div className="col-5 main-navbar d-none d-lg-block ">
+                <div className="col-6 main-navbar d-none d-lg-block ">
                     <div className="row justify-content-center h-100">
                         {
                             pages.map((e, i) => {
@@ -41,17 +41,15 @@ const Layout = () => {
                         }
                     </div>
                 </div>
-                <div className="col-8 col-sm-5 col-lg-3 row align-items-center text-end" style={{
-                    position: "relative"
-                }}>
+                <div className="col-9 col-sm-6 col-md-4 col-lg-3 row align-items-center justify-content-end text-end">
                     {
                         icons.map((e, i) => {
-                            return <div key={i} className="col-3">
+                            return <div key={i} className="col-2 me-2">
                                 <LayoutIcon icon={e} />
                             </div>
                         })
                     }
-                    <div className="col-3">
+                    <div className="col-2">
                         <div className="profile-img">
                             <NavLink to={`/user/1`}>
                                 <img src={person} alt="" style={{
@@ -60,12 +58,12 @@ const Layout = () => {
                             </NavLink>
                         </div>
                     </div>
-                    <div className="menu">
+                    {/* <div className="menu">
 
-                    </div>
+                    </div> */}
                 </div>
             </div>
-            <div className="row  justify-content-lg-between justify-content-center p-md-3 p-0 content">
+            <div className="row justify-content-lg-between justify-content-center p-md-3 p-0 content">
                 <div className="col-3 d-none d-lg-block sidebar">
                     <ListContainer />
                 </div>
