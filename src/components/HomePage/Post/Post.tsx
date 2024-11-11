@@ -4,7 +4,7 @@ import "./post.css"
 import { NavLink } from "react-router-dom"
 import { faEarthAmerica, faEllipsis, faHeart, faLink, faXmark } from "@fortawesome/free-solid-svg-icons"
 import { faComment as messageIcon, faHeart as likeIcon, faShareSquare as shareIcon } from "@fortawesome/free-regular-svg-icons"
-import ReactType from "./reactType"
+import ReactType from "./ReactType"
 
 const Post = () => {
     const interacts = [{ title: "Like", icon: likeIcon }
