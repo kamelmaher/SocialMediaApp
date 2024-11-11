@@ -1,7 +1,14 @@
 .post-type {
     border-radius: 3px;
 }
-
+.post-type h6 {
+    font-size: 15px;
+}
+@media (max-width: 576px) {
+    .post-type h6 {
+        font-size: 14px;
+    }
+}
 .post-type:hover {
     background-color: var(--hover-color);
 }
