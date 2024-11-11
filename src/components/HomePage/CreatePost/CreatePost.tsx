@@ -4,7 +4,7 @@ import PostType from "./PostType"
 const CreatePost = () => {
     const types = ["Live Video", "Photo/Image", "Feeling/Activity"]
     return (
-        <div className="p-2">
+        <div className="p-2 my-card">
             <div className="d-flex gap-2">
                 <div className="img">
                     <img src={logo} alt="" className="img-fluid post-img" />

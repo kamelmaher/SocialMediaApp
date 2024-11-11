@@ -1,6 +1,6 @@
 .main-layout {
-    padding: 0 12px 0;
-    background-color: white;
+    /* padding: 0 12px 0; */
+    background-color: var(--background-color);
 }
 
 .d-flex {

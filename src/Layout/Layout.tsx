@@ -18,7 +18,7 @@ const Layout = () => {
     const navigate = useNavigate();
     return (
         <div className="main-layout">
-            <div className="row justify-content-between">
+            <div className="row justify-content-between ps-3 pe-3 my-card">
                 <div className="col-3 d-flex gap-2 pb-2 logo">
                     <div>
                         <img src={logo} alt="" style={{
@@ -56,7 +56,7 @@ const Layout = () => {
                             <NavLink to={`/user/1`}>
                                 <img src={person} alt="" style={{
                                     width: "42px"
-                                }} className="rounded-circle"/>
+                                }} className="rounded-circle" />
                             </NavLink>
                         </div>
                     </div>
@@ -65,17 +65,20 @@ const Layout = () => {
                     </div>
                 </div>
             </div>
-            <div className="row pt-3">
-                <div className="col-3 d-none d-sm-block">
-                    <ListContainer />
-                </div>
-                <div className="col-lg-5 col-sm-9">
-                    <Outlet />
-                </div>
-                <div className="col-3 d-none d-lg-block">
-                    <AdPage />
+            <div className="container ps-0 pe-0">
+                <div className="row pt-3 justify-content-center p-md-3 p-0">
+                    <div className="col-3 d-none d-lg-block">
+                        <ListContainer />
+                    </div>
+                    <div className="col-12 col-md-8 col-lg-5 col-8">
+                        <Outlet />
+                    </div>
+                    <div className="col-3 d-none d-lg-block">
+                        <AdPage />
+                    </div>
                 </div>
             </div>
+
         </div>
     )
 }

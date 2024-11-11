@@ -2,7 +2,7 @@ import { useNavigate } from "react-router"
 import ListItem from "./ListItem"
 
 const ListContainer = () => {
-    const listItems = ["Friends" , "Memories" , "Saved" , "Groups" , "Video" , "MarketPlace" , "Feeds" , "Events"]
+    const listItems = [ "Kamel Maher" ,"Friends" , "Memories" , "Saved" , "Groups" , "Video" , "MarketPlace" , "Feeds" , "Events"]
     const navigate = useNavigate()
     return (
         <div>

@@ -1,12 +1,13 @@
-.homepage {
-    background-color: white;
-}
+.homepage {}
+
 .post-input {
     border-radius: 16px;
 }
+
 .post-img {
     width: 50px;
 }
+
 .post-text {
     width: 100%;
 }
