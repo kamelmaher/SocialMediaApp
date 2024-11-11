@@ -1,0 +1,59 @@
+.post .person-img {
+    flex: 0 0 auto;
+}
+
+.post .person-details {
+    flex: 1;
+}
+
+.post .name a {
+    text-decoration: none;
+    color: black;
+}
+
+.post .name a:hover {
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+.post .name div {
+    font-size: 14px;
+}
+
+.post .post-text {
+    font-size: 16px;
+}
+
+.post .options {
+    color: #7e8184;
+    font-size: 20px;
+}
+
+.post .options span {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.post .options span:hover {
+    background-color: var(--hover-color);
+}
+
+.post .post-details {
+    font-size: 13px;
+    color: #65676b
+}
+.react-type {
+    padding: 5px 0;
+    width: calc(100% / 3);
+}
+.react-type span {
+    padding-left: 5px;
+}
+.react-type:hover {
+    background-color: var(--hover-color);
+}
