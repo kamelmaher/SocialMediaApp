@@ -11,7 +11,7 @@ const Home = () => {
                 <StoryContainer />
             </div>
         </div>
-    )   
+    )
 }
 
 export default Home

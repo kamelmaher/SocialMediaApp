@@ -2,9 +2,19 @@
     /* padding: 0 12px 0; */
     background-color: var(--background-color);
 }
+
 .app-nav {
     background-color: white;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    top: 0;
 }
+
+.content {
+    margin-top: 60px !important;
+}
+
 .d-flex {
     align-items: center !important;
 }
@@ -82,4 +92,30 @@
     background-color: white;
     border-radius: 10px;
     display: none;
+}
+
+.sidebar {
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 8px;
+    /* Narrow scrollbar width */
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #f5f6f7;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: #c1c1c1;
+    border-radius: 4px;
+}
+
+@media (min-width: 992px) {
+    .padding {
+        margin-left: 275px;
+    }
 }

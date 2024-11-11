@@ -1,0 +1,17 @@
+.list-item {
+    display: flex;
+    align-items: center;
+    padding: 7px 5px;
+    gap: 5px;
+    border-radius: 6px;
+    width: 80%;
+}
+.list-item p {
+    font-weight: 600;
+}
+.list-item .icon {
+    padding-top: 0 !important;
+}
+.list-item:hover {
+    background-color: var(--hover-color);
+}

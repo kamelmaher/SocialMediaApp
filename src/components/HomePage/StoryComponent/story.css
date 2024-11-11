@@ -1,5 +1,5 @@
-
-.my-story ,.story {
+.my-story,
+.story {
     height: 200px;
     overflow: hidden;
     border-radius: 8px;
@@ -8,16 +8,32 @@
     padding: 0 10px 0;
 
 }
+
 @media (max-width: 576px) {
-    .my-story, .story {
+
+    .my-story,
+    .story {
         width: calc(100% / 4 - 5px);
         background-color: red;
         margin-left: 2px;
         height: 150px;
     }
 }
-.my-story img , .story .img , .story img {
+
+.my-story img,
+.story .img,
+.story img {
     height: 100%;
+}
+.story .img {
+    overflow: hidden;
+}
+
+.story .img img {
+    transition: .4s;
+}
+.story:hover > .img img  {
+    transform: scale(1.09) rotate(1deg);
 }
 .my-story .overlay {
     background-color: black;
@@ -27,8 +43,9 @@
     bottom: 0;
     text-align: center;
     color: white;
-    padding-top: 20px;  
+    padding-top: 20px;
 }
+
 .overlay .icon {
     position: absolute;
     width: 40px;
@@ -50,6 +67,7 @@
     position: relative;
     padding-left: 2px;
 }
+
 .story .story-overlay {
     padding: 7px;
     position: absolute;
@@ -60,7 +78,9 @@
     flex-direction: column;
     justify-content: space-between;
     color: white;
+    overflow: hidden;
 }
+
 .story-overlay img {
-    border: 2px solid var(--main-color);
+    border: 3px solid var(--main-color);
 }

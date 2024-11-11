@@ -65,16 +65,16 @@ const Layout = () => {
                     </div>
                 </div>
             </div>
-            <div className="row pt-3 justify-content-lg-between justify-content-center p-md-3 p-0">
-                <div className="col-3 d-none d-lg-block">
+            <div className="row pt-3 justify-content-lg-between justify-content-center p-md-3 p-0 content">
+                <div className="col-3 d-none d-lg-block sidebar">
                     <ListContainer />
                 </div>
-                <div className="col-12 col-lg-6 col-sm-9 d-flex justify-content-center align-items-start">
-                    <div className="pt-3">
+                <div className="col-12 col-lg-6 col-sm-9 d-flex justify-content-center align-items-start padding">
+                    <div className="pt-3 ">
                         <Outlet />
                     </div>
                 </div>
-                <div className="col-3 d-none d-lg-block">
+                <div className="col-3 d-none d-lg-block ">
                     <AdPage />
                 </div>
             </div>

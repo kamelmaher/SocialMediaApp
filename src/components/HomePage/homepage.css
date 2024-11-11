@@ -1,5 +1,7 @@
-.homepage {
-    width: 500px !important;
+@media (min-width: 576px) {
+    .homepage {
+        width: 500px !important;
+    }
 }
 
 .post-input {
