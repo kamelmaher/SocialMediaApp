@@ -1,0 +1,7 @@
+.post-type {
+    border-radius: 3px;
+}
+
+.post-type:hover {
+    background-color: #f0f2f5;
+}

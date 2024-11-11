@@ -1,21 +1,27 @@
 :root {
     --main-color: #0866ff;
-    --background-color: #f2f4f7:
+    --background-color: #f2f4f7;
+    --hover-color: #65686c
 }
+
 * {
     box-sizing: border-box !important;
-    
 }
+
 .row {
     --bs-gutter-x: 0 !important;
 }
+
 p {
     margin: 0 !important;
 }
+
 .pointer {
     cursor: pointer;
 }
 
 .my-card {
     background-color: white !important;
+    border-radius: 7px;
+    padding: 10px;
 }
