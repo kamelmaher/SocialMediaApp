@@ -17,6 +17,21 @@ const Home = () => {
             <div>
                 <Post />
             </div>
+            <div>
+                <Post />
+            </div>
+            <div>
+                <Post />
+            </div>
+            <div>
+                <Post />
+            </div>
+            <div>
+                <Post />
+            </div>
+            <div>
+                <Post />
+            </div>
         </div>
     )
 }
