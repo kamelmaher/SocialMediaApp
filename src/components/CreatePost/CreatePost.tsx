@@ -1,6 +1,6 @@
 import {  faImages, faVideo } from "@fortawesome/free-solid-svg-icons"
 import { faFaceLaugh } from "@fortawesome/free-regular-svg-icons"
-import person from "../../../../img/picture.jpg"
+import person from "../../../img/picture.jpg"
 import "./post.css"
 import PostType from "./PostType"
 

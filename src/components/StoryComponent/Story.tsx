@@ -1,4 +1,4 @@
-import person from "../../../../img/picture.jpg"
+import person from "../../../img/picture.jpg"
 import "./story.css"
 const Story = () => {
     return (

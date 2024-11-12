@@ -1,5 +1,5 @@
 import Story from "./Story"
-import person from "../../../../img/picture.jpg"
+import person from "../../../img/picture.jpg"
 import "./story.css"
 
 const StoryContainer = () => {

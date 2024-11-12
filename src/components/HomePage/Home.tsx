@@ -1,7 +1,7 @@
-import CreatePost from "./CreatePost/CreatePost"
+import CreatePost from "../CreatePost/CreatePost"
 import "./homepage.css"
-import Post from "./Post/Post"
-import StoryContainer from "./StoryComponent/StoryContainer"
+import Post from "../Post/Post"
+import StoryContainer from "../StoryComponent/StoryContainer"
 const Home = () => {
     return (
         <div className="homepage">
