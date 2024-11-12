@@ -8,7 +8,9 @@
 
 .post .name a {
     text-decoration: none;
-    color: black;
+    color: #080809;
+    font-size: 15px;
+    font-weight: 500;
 }
 
 .post .name a:hover {
@@ -47,13 +49,16 @@
     font-size: 13px;
     color: #65676b
 }
+
 .react-type {
     padding: 5px 0;
     width: calc(100% / 3);
 }
+
 .react-type span {
     padding-left: 5px;
 }
+
 .react-type:hover {
     background-color: var(--hover-color);
 }

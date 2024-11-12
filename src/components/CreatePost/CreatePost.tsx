@@ -18,7 +18,7 @@ const CreatePost = () => {
                     <input type="text" placeholder="Whats on your mind, Kamel?" className="post-input form-control" />
                 </div>
             </div>
-            <hr className="mt-2 mb-1" />
+            <hr className="mt-2" />
             <div className="row">
                 {
                     types.map((e , i) => {

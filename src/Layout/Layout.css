@@ -1,5 +1,4 @@
 .main-layout {
-    /* padding: 0 12px 0; */
     background-color: var(--background-color);
 }
 
@@ -9,6 +8,7 @@
     width: 100%;
     z-index: 100;
     top: 0;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .content {
@@ -25,7 +25,7 @@
 
 .search {
     position: relative;
-    color: #65676b;
+    color: #7a7d80;
     background-color: #f0f2f5;
     padding: 10px 10px;
     border-radius: 20px;
@@ -68,7 +68,7 @@
 }
 
 .layout-icon {
-    background-color: #f0f2f5;
+    background-color: #e2e5e9;
     width: 45px;
     height: 45px;
     border-radius: 50%;

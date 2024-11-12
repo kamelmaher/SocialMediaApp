@@ -18,7 +18,6 @@ const Post = () => {
         <div className="my-card post">
             {
                 !deletePost ?
-
                     <>
                         <div className="post-head d-flex gap-2">
                             <div className="person-img">
@@ -45,7 +44,7 @@ const Post = () => {
                             </div>
                         </div>
                         <div className="post-text mt-2 p-2">
-                            <pre style={{ fontFamily: "inherit" }} className="mb-0">
+                            <pre style={{ fontFamily: "inherit", color: "#080809" }} className="mb-0">
                                 {
                                     `Kamel Maher Abu Shawish`
                                 }
