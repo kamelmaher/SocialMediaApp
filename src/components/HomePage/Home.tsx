@@ -2,7 +2,9 @@ import CreatePost from "../CreatePost/CreatePost"
 import "./homepage.css"
 import Post from "../Post/Post"
 import StoryContainer from "../StoryComponent/StoryContainer"
+import { useAppSelector } from "../../Store/Store"
 const Home = () => {
+    const posts = useAppSelector(State => State.Post.posts)
     return (
         <div className="homepage">
             <div>
@@ -11,27 +13,11 @@ const Home = () => {
             <div className="mt-3">
                 <StoryContainer />
             </div>
-            <div>
-                <Post />
-            </div>
-            <div>
-                <Post />
-            </div>
-            <div>
-                <Post />
-            </div>
-            <div>
-                <Post />
-            </div>
-            <div>
-                <Post />
-            </div>
-            <div>
-                <Post />
-            </div>
-            <div>
-                <Post />
-            </div>
+            {
+                posts.map(e => {
+                    return <Post key={e.id} id={e.id} isLiked={e.isLiked} />
+                })
+            }
         </div>
     )
 }

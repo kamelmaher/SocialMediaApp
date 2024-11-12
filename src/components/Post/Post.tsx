@@ -2,18 +2,24 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import person from "../../../img/picture.jpg"
 import "./post.css"
 import { NavLink } from "react-router-dom"
-import { faEarthAmerica, faEllipsis, faHeart, faLink, faXmark } from "@fortawesome/free-solid-svg-icons"
-import { faComment as messageIcon, faHeart as likeIcon, faShareSquare as shareIcon } from "@fortawesome/free-regular-svg-icons"
+import { faEarthAmerica, faEllipsis, faHeart, faLink, faXmark, faThumbsUp } from "@fortawesome/free-solid-svg-icons"
+import { faComment as messageIcon, faShareSquare as shareIcon, faThumbsUp as LikeButton } from "@fortawesome/free-regular-svg-icons"
 import ReactType from "./ReactType"
 import { useState } from "react"
-
-const Post = () => {
-    const interacts = [{ title: "Like", icon: likeIcon }
+import { useAppSelector } from "../../Store/Store"
+type PostProps = {
+    id: number
+    isLiked: boolean
+}
+const Post = ({ id }: PostProps) => {
+    const [isLiked, setIsLiked] = useState(false)
+    const [deletePost, setDeletePost] = useState(false);
+    const posts = useAppSelector(state => state.Post.posts)
+    const interacts = [{ title: "Like", icon: isLiked ? faThumbsUp : LikeButton }
         , { title: "comment", icon: messageIcon }
         , { title: "Share", icon: shareIcon }
     ]
     console.log("rendered")
-    const [deletePost, setDeletePost] = useState(false);
     return (
         <div className="my-card post">
             {
@@ -66,8 +72,16 @@ const Post = () => {
                         </div>
                         <div className="post-interacts d-flex mt-2">
                             {
-                                interacts.map(e => {
-                                    return <ReactType title={e.title} icon={e.icon} key={e.title} />
+                                interacts.map((e) => {
+                                    return <ReactType id={id} title={e.title} icon={e.icon} key={e.title} handleClick={() => {
+                                        if (e.title == "Like") {
+                                            posts.map(e => {
+                                                if (e.id == id) {
+                                                    setIsLiked(!e.isLiked)
+                                                }
+                                            })
+                                        }
+                                    }} />
                                 })
                             }
                         </div>

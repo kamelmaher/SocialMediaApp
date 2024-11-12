@@ -6,6 +6,8 @@ import "./glopals.css"
 import User from './components/UserPage/User.tsx'
 import List from './components/List/List.tsx'
 import Home from './components/HomePage/Home.tsx'
+import { Store } from './Store/Store.ts'
+import { Provider } from 'react-redux'
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route>
@@ -18,5 +20,7 @@ const router = createBrowserRouter(
     )
 )
 createRoot(document.getElementById('root')!).render(
-    <RouterProvider router={router} />
+    <Provider store={Store}>
+        <RouterProvider router={router} />
+    </Provider>
 )
