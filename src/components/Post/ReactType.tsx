@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 type ReactTypeProps = {
     title: string,
     icon: IconProp,
-    id: number,
     handleClick: () => void
 }
 const ReactType = ({ title, icon, handleClick }: ReactTypeProps) => {
