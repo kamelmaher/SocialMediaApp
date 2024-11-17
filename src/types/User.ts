@@ -2,5 +2,11 @@
 
 export type User = {
   id: number;
-  name: string;
+  fname: string;
+  lname: string;
+  age: number;
+  email: string;
+  password: string;
+  gender: string;
+  img: string;
 };

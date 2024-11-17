@@ -8,9 +8,16 @@ import List from './components/List/List.tsx'
 import Home from './components/HomePage/Home.tsx'
 import { Store } from './Store/Store.ts'
 import { Provider } from 'react-redux'
+import Login from './components/Login/Login.tsx'
+import SignUp from './components/Login/SignUp.tsx'
+import LoginPageContainer from './components/Login/LoginPageContainer.tsx'
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route>
+            <Route path='auth/' element={<LoginPageContainer />}>
+                <Route path='login' element={<Login />} />
+                <Route path='signup' element={<SignUp />} />
+            </Route>
             <Route path='/' element={<Layout />}>
                 <Route path='/' element={<Home />}></Route>
                 <Route path='/list/:id' element={<List></List>}></Route>

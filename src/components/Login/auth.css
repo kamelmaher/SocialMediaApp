@@ -1,0 +1,51 @@
+.account-card {
+    width: 160px !important;
+    cursor: pointer;
+    transition: .2s;
+    box-shadow: 0 0 0 1px #dddfe2;
+}
+
+.account-card:hover {
+    box-shadow: 0 1px 8px 5px #dddfe2;
+}
+
+.heading {
+    color: var(--main-color);
+    font-weight: bold;
+    font-size: 40px;
+    letter-spacing: 2px;
+}
+
+.add-account {
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--main-color);
+    display: flex;
+    justify-content: center;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Login */
+.login {
+    max-width: 400px;
+    min-width: 250px;
+}
+.login-form input {
+    border: 1px solid #dddfe2;
+    color: #1d2129;
+}
+
+.login-form input::placeholder {}
+
+/* Login */
+
+/* Signup */
+.sign-up div {
+    margin-bottom: 12px;
+}
+/* Signup */
