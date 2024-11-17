@@ -5,14 +5,16 @@ import { NavLink } from "react-router-dom"
 import { faEarthAmerica, faEllipsis, faXmark, faThumbsUp } from "@fortawesome/free-solid-svg-icons"
 import { faComment as messageIcon, faShareSquare as shareIcon, faThumbsUp as LikeButton } from "@fortawesome/free-regular-svg-icons"
 import ReactType from "./ReactType"
-import { useState } from "react"
+import { ChangeEvent, useState } from "react"
 import { useAppDispatch, useAppSelector } from "../../Store/Store"
 import { PostType } from "../../types/Post"
-import { likePost } from "../../Store/PostSlice"
+import { comment, likePost } from "../../Store/PostSlice"
 import LikeIcon from "../../Icons/LikeIcon"
 import LoveIcon from "../../Icons/LoveIcon"
 import LaughIcon from "../../Icons/LaughIcon"
 import SadIcon from "../../Icons/SadIcon"
+import CommentsList from "./CommentsList"
+import Comment from "./Comment"
 type PostProps = {
     post: PostType
 }
@@ -32,7 +34,16 @@ const Post = ({ post }: PostProps) => {
         , { title: "Share", icon: shareIcon }
     ]
     const [isComment, setIsComment] = useState(false)
-    console.log("rendered")
+    const [commentText, setCommentText] = useState("")
+    const [showComments, setShowComments] = useState(false)
+
+    const getCommentText = (e: ChangeEvent<HTMLInputElement>) => {
+        setCommentText(e.target.value)
+    }
+    const sendComment = () => {
+        dispatch(comment({ id: post.id, user: loginnedUser, text: commentText }))
+        setIsComment(false)
+    }
     let x = -5
     return (
         <div className="my-card post">
@@ -92,10 +103,13 @@ const Post = ({ post }: PostProps) => {
                                         }
                                     </>
                                 }
-                                <span className="ms-1">{post.interactions.likes.length} Like{post.interactions.likes.length > 1 ? "s" : ""}</span>
+                                <span className="ms-1 reaction-count">{post.interactions.likes.length} Like{post.interactions.likes.length > 1 ? "s" : ""}</span>
                             </div>
                             <div>
-                                <span className="me-1">{post.interactions.comments.length} comments</span>
+                                <span
+                                    className="me-1 reaction-count"
+                                    onClick={() => setShowComments(!showComments)}
+                                >{post.interactions.comments.length} comments</span>
                                 <span>100 shares</span>
                             </div>
                         </div>
@@ -108,21 +122,24 @@ const Post = ({ post }: PostProps) => {
                                             // Like Post 
                                             dispatch(likePost({ id: post.id, user: loginnedUser }))
                                         } else if (e.title == "comment") {
-                                            setIsComment(true)
+                                            setIsComment(!isComment)
                                         }
                                     }} />
                                 })
                             }
                         </div>
-                        <div className="comment">
-                            {
-                                isComment &&
-                                <form>
-                                    <label>Add Comment</label>
-                                    <input type="text" className="form-control" />
-                                </form>
-                            }
-                        </div>
+                        {
+                            // Add Comment
+                            isComment &&
+                            <Comment addComment={true} getCommentText={getCommentText} sendComment={sendComment} />
+                        }
+                        {
+                            // Comment List 
+                            showComments &&
+                            <div className="comments">
+                                <CommentsList post={post} />
+                            </div>
+                        }
                     </>
                     :
                     <div>

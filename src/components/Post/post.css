@@ -63,3 +63,33 @@
     background-color: var(--hover-color);
 }
 
+/* Comment Feature */
+.reaction-count:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.comment div:first-child {
+    flex: 0 0 auto;
+}
+
+.comment form:last-child {
+    flex: 1
+}
+
+.comment form:last-child,
+.single-comment {
+    border-radius: 18px;
+    font-size: 14px;
+}
+
+.single-comment {
+    padding: 10px 20px 10px 10px;
+    background-color: #f0f2f5;
+}
+
+.single-comment p {
+    font-weight: bold;
+}
+
+/* Comment Feature */
