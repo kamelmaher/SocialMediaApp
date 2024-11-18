@@ -40,9 +40,14 @@ export const UserSlice = createSlice({
     },
     getUsers: (state) => {
       const data = localStorage.getItem("users");
+      const user = localStorage.getItem("loginnedUser");
       if (data) {
         const parsedData = JSON.parse(data);
         state.users = parsedData;
+      }
+      if (user) {
+        const parsedData = JSON.parse(user);
+        state.loginnedUser = parsedData;
       }
     },
   },
