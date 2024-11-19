@@ -61,9 +61,35 @@ export const UserSlice = createSlice({
       localStorage.setItem("loginnedUser", JSON.stringify(state.loginnedUser));
       localStorage.setItem("users", JSON.stringify(state.users));
     },
+    addFriend: (state, action: PayloadAction<User>) => {
+      let friendFound = false;
+      state.loginnedUser.friends.map((e) => {
+        if (e.id == action.payload.id) {
+          friendFound = true;
+        }
+      });
+      if (!friendFound) {
+        state.loginnedUser.friends.push(action.payload);
+        localStorage.setItem(
+          "loginnedUser",
+          JSON.stringify(state.loginnedUser)
+        );
+        state.users.map((e) => {
+          if (e.id == state.loginnedUser.id)
+            e.friends = state.loginnedUser.friends;
+        });
+        localStorage.setItem("users", JSON.stringify(state.users));
+      }
+    },
   },
 });
 
-export const { logIn, signUp, getUsers, getLoginnedUser, updateUser } =
-  UserSlice.actions;
+export const {
+  logIn,
+  signUp,
+  getUsers,
+  getLoginnedUser,
+  updateUser,
+  addFriend,
+} = UserSlice.actions;
 export default UserSlice.reducer;

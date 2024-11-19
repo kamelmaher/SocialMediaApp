@@ -128,15 +128,18 @@ const User = () => {
                                     <div className="user-details row align-items-center bg-white">
                                         <div className="col-lg-2" >
                                             <div style={{ position: "relative", width: "fit-content", margin: "auto" }}>
-                                                <FontAwesomeIcon icon={faPlusCircle} className="add-img pointer" onClick={() => {
-                                                    setIsVisible(true)
-                                                }}></FontAwesomeIcon>
+                                                {
+                                                    user.id == loginnedUser.id &&
+                                                    <FontAwesomeIcon icon={faPlusCircle} className="add-img pointer" onClick={() => {
+                                                        setIsVisible(true)
+                                                    }}></FontAwesomeIcon>
+                                                }
                                                 <UserImg style={{ width: '100px', height: "100px" }} myUser={user} />
                                             </div>
                                         </div>
                                         <div className="name col-lg-5 mt-2">
                                             <h2>{user.fname} {user.lname}</h2>
-                                            <span>Friends Count</span>
+                                            <span>{user.friends.length} Friend</span>
                                         </div>
                                         <div className="col-lg-5 mt-2">
                                             <div className="d-flex user-options gap-3 justify-content-center justify-content-lg-end">
@@ -161,9 +164,9 @@ const User = () => {
                                         </div>
                                     </div>
 
-                                    <UserSection text="images" data={images} />
+                                    <UserSection text="images" images={images} />
 
-                                    <UserSection text="friends" />
+                                    <UserSection text="friends" friends={user.friends} />
                                 </div>
 
                                 <div className="col-lg-7 p-2">
