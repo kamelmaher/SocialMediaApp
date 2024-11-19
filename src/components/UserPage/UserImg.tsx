@@ -1,24 +1,27 @@
 import { NavLink } from "react-router-dom"
-import { useAppSelector } from "../../Store/Store"
-import { PostType } from "../../types/Post"
+import { User } from "../../types/User"
 type userImgProps = {
     style?: object,
     className?: string,
-    post?: PostType
+    myUser: User
 }
-const UserImg = ({ style, className, post }: userImgProps) => {
-    const user = useAppSelector(state => state.User.loginnedUser)
-    const img = post?.user.img
+const UserImg = ({ style, className, myUser }: userImgProps) => {
     return (
-        <NavLink className="img" to={`/user/${post?.user.fname}`} >
-            <img src={post ? img : user.img} alt="" className={`${className} rounded-circle`} style={
-                !style ?
-                    { width: "45px", height: "45px" }
-                    :
-                    style
+        <>
+            {
+                myUser &&
+                <NavLink className="img" to={`/user/${myUser.id}`} >
+                    <img src={myUser.img} className={`${className} rounded-circle`} style={
+                        !style ?
+                            { width: "45px", height: "45px" }
+                            :
+                            style
+                    }
+                    />
+                </NavLink>
             }
-            />
-        </NavLink>
+        </>
+
     )
 }
 

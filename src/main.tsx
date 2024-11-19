@@ -13,7 +13,7 @@ import SignUp from './components/Login/SignUp.tsx'
 import LoginPageContainer from './components/Login/LoginPageContainer.tsx'
 const router = createBrowserRouter(
     createRoutesFromElements(
-        <Route >
+        <Route>
             <Route path='auth/' element={<LoginPageContainer />}>
                 <Route path='login' element={<Login />} />
                 <Route path='signup' element={<SignUp />} />
@@ -22,7 +22,7 @@ const router = createBrowserRouter(
                 <Route path='/' element={<Home />}></Route>
                 <Route path='/list/:id' element={<List />}></Route>
             </Route>
-            <Route path='/user/:user' element={<User />}></Route>
+            <Route path='/user/:userId' element={<User />}></Route>
         </Route>
     )
 )

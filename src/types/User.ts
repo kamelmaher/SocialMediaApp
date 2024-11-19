@@ -9,4 +9,5 @@ export type User = {
   password: string;
   gender: string;
   img: string;
+  friends: User[];
 };

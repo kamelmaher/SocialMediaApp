@@ -18,6 +18,7 @@ const initialState: UserState = {
     password: "123123",
     gender: "male",
     img: "",
+    friends: [],
   },
 };
 
@@ -54,7 +55,11 @@ export const UserSlice = createSlice({
     },
     updateUser: (state, action: PayloadAction<User>) => {
       state.loginnedUser = action.payload;
+      state.users.map((e) => {
+        if (e.id == state.loginnedUser.id) e.img = state.loginnedUser.img;
+      });
       localStorage.setItem("loginnedUser", JSON.stringify(state.loginnedUser));
+      localStorage.setItem("users", JSON.stringify(state.users));
     },
   },
 });

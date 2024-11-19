@@ -5,14 +5,21 @@ import LayoutIcon from "./LayoutIcon"
 import SearchComponent from "./SearchComponent"
 import logo from "../../img/icons/facebook.png"
 import { faFacebookMessenger } from "@fortawesome/free-brands-svg-icons"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import UserImg from "../components/UserPage/UserImg"
+import { useAppDispatch, useAppSelector } from "../Store/Store"
+import { getLoginnedUser } from "../Store/UserSlice"
 
 const TopBar = () => {
     const icons = [faFacebookMessenger, faTableCells, faBell]
     const pages = [faHouse, faUserGroup, faUserCircle]
+    const dispatch = useAppDispatch()
     const [activePage, setActivePage] = useState(0)
     const navigate = useNavigate()
+    useEffect(() => {
+        dispatch(getLoginnedUser())
+    }, [])
+    const user = useAppSelector(state => state.User.loginnedUser)
     return (
         <div className="row justify-content-between ps-3 pe-3 app-nav">
             <div className="col-3 d-flex gap-2 pb-2 logo">
@@ -47,7 +54,7 @@ const TopBar = () => {
                 }
                 <div className="col-2">
                     <div className="profile-img">
-                        <UserImg />
+                        <UserImg myUser={user} />
                     </div>
                 </div>
             </div>

@@ -19,9 +19,11 @@ type PostProps = {
     post: PostType
 }
 const Post = ({ post }: PostProps) => {
-    const loginnedUser = useAppSelector(state => state.User.loginnedUser)
+
     const dispatch = useAppDispatch()
+    const loginnedUser = useAppSelector(state => state.User.loginnedUser)
     const [deletePost, setDeletePost] = useState(false);
+
     let isLiked = false
 
     post.interactions.likes.map(e => {
@@ -29,10 +31,12 @@ const Post = ({ post }: PostProps) => {
             isLiked = true
         }
     })
+
     const interacts = [{ title: "Like", icon: isLiked ? faThumbsUp : LikeButton }
         , { title: "comment", icon: messageIcon }
         , { title: "Share", icon: shareIcon }
     ]
+
     const [isComment, setIsComment] = useState(false)
     const [commentText, setCommentText] = useState("")
     const [showComments, setShowComments] = useState(false)
@@ -40,10 +44,12 @@ const Post = ({ post }: PostProps) => {
     const getCommentText = (e: ChangeEvent<HTMLInputElement>) => {
         setCommentText(e.target.value)
     }
+
     const sendComment = () => {
         dispatch(comment({ id: post.id, user: loginnedUser, text: commentText }))
         setIsComment(false)
     }
+
     let x = -5
     return (
         <div className="my-card post">
@@ -51,10 +57,10 @@ const Post = ({ post }: PostProps) => {
                 !deletePost ?
                     <>
                         <div className="post-head d-flex gap-2">
-                            <UserImg style={{ flex: "0 0 auto", width: '45px', height: "45px" }} className="img-fluid" post={post} />
+                            <UserImg style={{ flex: "0 0 auto", width: '45px', height: "45px" }} className="img-fluid" myUser={post.user} />
                             <div className="person-details d-flex justify-content-between">
                                 <div className="name">
-                                    <NavLink className="mb-0" to={"/user/1"}>{post.user.fname} {post.user.lname}</NavLink>
+                                    <NavLink className="mb-0" to={`/user/${post.user.id}`}>{post.user.fname} {post.user.lname}</NavLink>
                                     <div>
                                         <span className="pe-1">3h</span>
                                         <FontAwesomeIcon icon={faEarthAmerica}></FontAwesomeIcon>

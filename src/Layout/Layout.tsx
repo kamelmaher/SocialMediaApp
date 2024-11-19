@@ -22,11 +22,11 @@ const Layout = () => {
                     <ListContainer />
                 </div>
                 <div className="col-12 col-lg-6 col-sm-9 d-flex justify-content-center align-items-start padding">
-                    <div className=" ">
+                    <div>
                         <Outlet />
                     </div>
                 </div>
-                <div className="col-3 d-none d-lg-block ">
+                <div className="col-2 d-none d-lg-block ">
                     <AdPage />
                 </div>
             </div>
