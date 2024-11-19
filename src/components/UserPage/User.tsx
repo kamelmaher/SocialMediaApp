@@ -98,7 +98,6 @@ const User = () => {
                             }}>Add Imgae</button></div>
                         </form>
                     </div>
-
                     <div>
                         <span>Suggested Photos</span>
                         <hr />
