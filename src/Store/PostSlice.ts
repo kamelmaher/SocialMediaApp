@@ -72,11 +72,6 @@ export const postSlice = createSlice({
       }
     },
     likePost: (state, action: PayloadAction<LikeProps>) => {
-      const data = localStorage.getItem("posts");
-      if (data) {
-        const parsedData = JSON.parse(data);
-        state.posts = parsedData;
-      }
       state.posts.map((post) => {
         // Find Post
         if (post.id == action.payload.id) {
@@ -114,14 +109,8 @@ export const postSlice = createSlice({
       localStorage.setItem("posts", JSON.stringify(state.posts));
     },
     comment: (state, action: PayloadAction<CommentProps>) => {
-      const data = localStorage.getItem("posts");
-      if (data) {
-        const parsedData = JSON.parse(data);
-        state.posts = parsedData;
-      }
-
       state.posts.map((e) => {
-      // get Numbers Of Likes
+        // get Numbers Of Likes
         if (e.id == action.payload.id) {
           const comments = e.interactions.comments.length;
           e.interactions.comments.push({
@@ -133,8 +122,20 @@ export const postSlice = createSlice({
       });
       localStorage.setItem("posts", JSON.stringify(state.posts));
     },
+    updatePosts: (state, action: PayloadAction<PostType[]>) => {
+      const loginnedUser = JSON.parse(localStorage.getItem("loginnedUser")!);
+      state.posts.map((post) => {
+        action.payload.map((e) => {
+          if (e.id == post.id) {
+            post.user = loginnedUser;
+          }
+        });
+      });
+      localStorage.setItem("posts", JSON.stringify(state.posts));
+    },
   },
 });
 
-export const { getPosts, likePost, createPost, comment } = postSlice.actions;
+export const { getPosts, likePost, createPost, comment, updatePosts } =
+  postSlice.actions;
 export default postSlice.reducer;

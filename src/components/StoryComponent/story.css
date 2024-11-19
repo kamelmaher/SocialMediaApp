@@ -14,9 +14,8 @@
     .my-story,
     .story {
         width: calc(100% / 4 - 5px);
-        background-color: red;
         margin-left: 2px;
-        height: 150px;
+        height: 180px;
     }
 }
 
@@ -25,6 +24,7 @@
 .story img {
     height: 100%;
 }
+
 .story .img {
     overflow: hidden;
 }
@@ -32,9 +32,11 @@
 .story .img img {
     transition: .4s;
 }
-.story:hover > .img img  {
+
+.story:hover>.img img {
     transform: scale(1.09) rotate(1deg);
 }
+
 .my-story .overlay {
     background-color: black;
     width: 100%;

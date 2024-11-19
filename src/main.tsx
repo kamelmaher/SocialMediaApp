@@ -13,16 +13,16 @@ import SignUp from './components/Login/SignUp.tsx'
 import LoginPageContainer from './components/Login/LoginPageContainer.tsx'
 const router = createBrowserRouter(
     createRoutesFromElements(
-        <Route>
+        <Route >
             <Route path='auth/' element={<LoginPageContainer />}>
                 <Route path='login' element={<Login />} />
                 <Route path='signup' element={<SignUp />} />
             </Route>
             <Route path='/' element={<Layout />}>
                 <Route path='/' element={<Home />}></Route>
-                <Route path='/list/:id' element={<List></List>}></Route>
-                <Route path='/user/1' element={<User />}></Route>
+                <Route path='/list/:id' element={<List />}></Route>
             </Route>
+            <Route path='/user/:user' element={<User />}></Route>
         </Route>
     )
 )

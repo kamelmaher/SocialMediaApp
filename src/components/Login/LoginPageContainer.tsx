@@ -1,9 +1,9 @@
 import { Outlet } from "react-router"
 import "./auth.css"
 import Account from "./Account"
+import { useAppDispatch } from "../../Store/Store"
 import { useEffect } from "react"
 import { getUsers } from "../../Store/UserSlice"
-import { useAppDispatch } from "../../Store/Store"
 const LoginPageContainer = () => {
     const dispatch = useAppDispatch()
     useEffect(() => {

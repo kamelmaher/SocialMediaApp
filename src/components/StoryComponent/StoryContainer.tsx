@@ -1,12 +1,13 @@
 import Story from "./Story"
-import person from "../../../img/picture.jpg"
 import "./story.css"
+import { useAppSelector } from "../../Store/Store"
 
 const StoryContainer = () => {
+    const loginnedUser = useAppSelector(state => state.User.loginnedUser)
     return (
         <div className="row stories justify-content-center">
             <div className="my-story col-3 create-story p-0">
-                <img src={person} alt="" className="img-fluid" />
+                <img src={loginnedUser.img} alt="" style={{ objectFit: "cover", width: "100%" }} />
                 <div className="overlay">
                     <div className="icon">
                         +

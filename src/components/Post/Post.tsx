@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import "./post.css"
-import person from "../../../img/picture.jpg"
 import { NavLink } from "react-router-dom"
 import { faEarthAmerica, faEllipsis, faXmark, faThumbsUp } from "@fortawesome/free-solid-svg-icons"
 import { faComment as messageIcon, faShareSquare as shareIcon, faThumbsUp as LikeButton } from "@fortawesome/free-regular-svg-icons"
@@ -15,6 +14,7 @@ import LaughIcon from "../../Icons/LaughIcon"
 import SadIcon from "../../Icons/SadIcon"
 import CommentsList from "./CommentsList"
 import Comment from "./Comment"
+import UserImg from "../UserPage/UserImg"
 type PostProps = {
     post: PostType
 }
@@ -51,12 +51,10 @@ const Post = ({ post }: PostProps) => {
                 !deletePost ?
                     <>
                         <div className="post-head d-flex gap-2">
-                            <div className="person-img">
-                                <img src={person} alt="user" className="img-fluid rounded-circle" style={{ width: "44px" }} />
-                            </div>
+                            <UserImg style={{ flex: "0 0 auto", width: '45px', height: "45px" }} className="img-fluid" post={post} />
                             <div className="person-details d-flex justify-content-between">
                                 <div className="name">
-                                    <NavLink className="mb-0" to={"/user/1"}>Kamel Maher</NavLink>
+                                    <NavLink className="mb-0" to={"/user/1"}>{post.user.fname} {post.user.lname}</NavLink>
                                     <div>
                                         <span className="pe-1">3h</span>
                                         <FontAwesomeIcon icon={faEarthAmerica}></FontAwesomeIcon>

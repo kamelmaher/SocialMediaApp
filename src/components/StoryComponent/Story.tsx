@@ -4,7 +4,7 @@ const Story = () => {
     return (
         <div className="story col-3 ms-sm-1 me-sm-1 p-0">
             <div className="img">
-                <img src={person} alt="" className="img-fluid" />
+                <img src={person} alt="" className="img-fluid" style={{ objectFit: "cover" }} />
             </div>
             <div className="story-overlay">
                 <div>

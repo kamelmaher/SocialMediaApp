@@ -1,29 +1,32 @@
 import { faImages, faVideo } from "@fortawesome/free-solid-svg-icons"
 import { faFaceLaugh } from "@fortawesome/free-regular-svg-icons"
-import person from "../../../img/picture.jpg"
 import "./post.css"
 import PostType from "./PostType"
 import PostDetails from "./PostDetails"
 import { useState } from "react"
+import UserImg from "../UserPage/UserImg"
+import Adding from "../Adding"
+import { useAppSelector } from "../../Store/Store"
 
 const CreatePost = () => {
     const icons = [faVideo, faImages, faFaceLaugh]
     const types = ["Live Video", "Photo/Image", "Feeling/Activity"]
     const colors = ["#f02849", "#45bd62", "#f7b928"]
-    const [visible, setVisible] = useState(false)
+    const [isVisible, setIsVisible] = useState(false)
+
+    const loginnedUser = useAppSelector(state => state.User.loginnedUser)
+
     const handleFormChild = (e: boolean) => {
-        setVisible(e)
+        setIsVisible(e)
     }
     return (
         <div className="my-card">
             <div className="d-flex gap-2">
-                <div className="img">
-                    <img src={person} alt="" className="img-fluid post-img rounded-circle" />
-                </div>
+                <UserImg className="post-img" />
                 <div className="post-text">
                     <p className="post-input" onClick={() => {
-                        setVisible(true)
-                    }}>Whats on your mind, Kamel ?</p>
+                        setIsVisible(true)
+                    }}>Whats on your mind, {loginnedUser.fname} ?</p>
                 </div>
             </div>
             <hr className="mt-2" />
@@ -34,7 +37,9 @@ const CreatePost = () => {
                     })
                 }
             </div>
-            <PostDetails visible={visible} handleFromCild={handleFormChild} />
+            <Adding visible={isVisible} handleFromCild={handleFormChild} text="Create Post">
+                <PostDetails handleFromChild={handleFormChild} />
+            </Adding>
         </div>
     )
 }
