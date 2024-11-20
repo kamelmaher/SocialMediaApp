@@ -2,63 +2,19 @@
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { PostType } from "../types/Post";
-import { User } from "../types/User";
 
 type PostState = {
   posts: PostType[];
 };
 const initialState: PostState = {
-  posts: [
-    //   {
-    //     isLiked: false,
-    //     id: 1,
-    //     user: {
-    //       name: "User 1",
-    //     },
-    //     text: "",
-    //     imgPath: "",
-    //     mentions: [],
-    //   },
-    //   {
-    //     isLiked: false,
-    //     id: 2,
-    //     user: {
-    //       name: "User 2",
-    //     },
-    //     text: "",
-    //     imgPath: "",
-    //     mentions: [],
-    //   },
-    //   {
-    //     isLiked: false,
-    //     id: 3,
-    //     user: {
-    //       name: "User 3",
-    //     },
-    //     text: "",
-    //     imgPath: "",
-    //     mentions: [],
-    //   },
-    //   {
-    //     isLiked: false,
-    //     id: 4,
-    //     user: {
-    //       name: "User 4",
-    //     },
-    //     text: "",
-    //     imgPath: "",
-    //     mentions: [],
-    //   },
-  ],
+  posts: [],
 };
-type LikeProps = {
+
+type PostProps = {
   id: number;
-  user: User;
-};
-type CommentProps = {
-  id: number;
-  user: User;
-  text: string;
+  userId: number;
+  text?: string;
+  postId: number;
 };
 export const postSlice = createSlice({
   name: "Post",
@@ -71,7 +27,7 @@ export const postSlice = createSlice({
         state.posts = parsedData;
       }
     },
-    likePost: (state, action: PayloadAction<LikeProps>) => {
+    likePost: (state, action: PayloadAction<PostProps>) => {
       state.posts.map((post) => {
         // Find Post
         if (post.id == action.payload.id) {
@@ -81,13 +37,13 @@ export const postSlice = createSlice({
           // Check If User Found
           let userFound = false;
           post.interactions.likes.map((e) => {
-            if (e.user.id == action.payload.user.id) {
+            if (e.userId == action.payload.userId) {
               // User Found
               userFound = true;
 
               // DisLike Post
               post.interactions.likes = post.interactions.likes.filter(
-                (e) => e.user.id != action.payload.user.id
+                (e) => e.userId != action.payload.userId
               );
             }
           });
@@ -96,8 +52,9 @@ export const postSlice = createSlice({
           if (!userFound) {
             post.interactions.likes.push({
               id: likes + 1,
-              user: action.payload.user,
+              userId: action.payload.userId,
               name: "like",
+              postId: action.payload.postId,
             });
           }
         }
@@ -108,15 +65,16 @@ export const postSlice = createSlice({
       state.posts.push(action.payload);
       localStorage.setItem("posts", JSON.stringify(state.posts));
     },
-    comment: (state, action: PayloadAction<CommentProps>) => {
+    comment: (state, action: PayloadAction<PostProps>) => {
       state.posts.map((e) => {
-        // get Numbers Of Likes
+        // get Numbers Of Comments
         if (e.id == action.payload.id) {
           const comments = e.interactions.comments.length;
           e.interactions.comments.push({
             id: comments + 1,
-            text: action.payload.text,
-            user: action.payload.user,
+            text: action.payload.text!,
+            userId: action.payload.userId,
+            postId: action.payload.postId,
           });
         }
       });

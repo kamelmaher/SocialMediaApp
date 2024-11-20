@@ -9,11 +9,13 @@ import { getPosts } from "../Store/PostSlice"
 import { getLoginnedUser, getUsers } from "../Store/UserSlice"
 const Layout = () => {
     const dispatch = useAppDispatch()
+    
     useEffect(() => {
         dispatch(getPosts())
         dispatch(getUsers())
         dispatch(getLoginnedUser())
     }, [])
+    
     return (
         <div className="main-layout">
             <TopBar />
