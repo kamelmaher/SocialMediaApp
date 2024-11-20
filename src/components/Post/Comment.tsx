@@ -16,8 +16,6 @@ const Comment = ({ addComment, comment, getCommentText, sendComment }: CommentPr
     const users = useAppSelector(state => state.User.users)
     const loginnedUser = useAppSelector(state => state.User.loginnedUser)
     const myUser = users.filter(e => e.id == comment?.userId)[0]
-    console.log(comment?.userId)
-    users.map(e => console.log(e.id))
     return (
         <>
             {
