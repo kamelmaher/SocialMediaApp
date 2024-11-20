@@ -15,6 +15,7 @@ import SadIcon from "../../Icons/SadIcon"
 import CommentsList from "./CommentsList"
 import Comment from "./Comment"
 import UserImg from "../UserPage/UserImg"
+import { notify } from "../../Store/UserSlice"
 type PostProps = {
     post: PostType
 }
@@ -27,7 +28,7 @@ const Post = ({ post }: PostProps) => {
     let isLiked = false
 
     post.interactions.likes.map(e => {
-        if (e.user.id == loginnedUser.id) {
+        if (e.userId == loginnedUser.id) {
             isLiked = true
         }
     })
@@ -46,7 +47,8 @@ const Post = ({ post }: PostProps) => {
     }
 
     const sendComment = () => {
-        dispatch(comment({ id: post.id, user: loginnedUser, text: commentText }))
+        dispatch(notify({ type: "comment", userId: post.user.id, id: Math.floor(Math.random() * 1000) + 1, hasRead: false, post: post }))
+        dispatch(comment({ id: post.id, userId: loginnedUser.id, text: commentText, postId: post.id }))
         setIsComment(false)
     }
 
@@ -78,6 +80,7 @@ const Post = ({ post }: PostProps) => {
                                 </div>
                             </div>
                         </div>
+                        
                         <div className="post-text mt-2 p-2">
                             <pre style={{ fontFamily: "inherit", color: "#080809" }} className="mb-0">
                                 {
@@ -85,9 +88,11 @@ const Post = ({ post }: PostProps) => {
                                 }
                             </pre>
                         </div>
+                        
                         <div className="post-img w-100">
                             <img src={post.imgPath} alt="post-img" style={{ maxHeight: "400px", width: "100%" }} />
                         </div>
+
                         <div className="post-details mt-1 d-flex justify-content-between">
                             <div className="reatcions d-flex align-items-center">
                                 {
@@ -117,6 +122,7 @@ const Post = ({ post }: PostProps) => {
                                 <span>100 shares</span>
                             </div>
                         </div>
+                        
                         <div className="post-interacts d-flex mt-2">
                             {
                                 interacts.map((e) => {
@@ -124,7 +130,8 @@ const Post = ({ post }: PostProps) => {
                                         if (e.title == "Like") {
 
                                             // Like Post 
-                                            dispatch(likePost({ id: post.id, user: loginnedUser }))
+                                            dispatch(likePost({ id: post.id, userId: loginnedUser.id, postId: post.id }))
+                                            dispatch(notify({ type: "like", userId: post.user.id, id: Math.floor(Math.random() * 1000) + 1, hasRead: false, post: post }))
                                         } else if (e.title == "comment") {
                                             setIsComment(!isComment)
                                         }

@@ -54,7 +54,12 @@ const SignUp = () => {
                 gender: data.gender,
                 age: age,
                 img: "",
-                friends: []
+                friends: [],
+                notifications: {
+                    requests: [],
+                    likes: [],
+                    comments: []
+                }
             }
             dispatch(signUp(newUser))
             navigate("/auth/login")

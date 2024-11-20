@@ -7,7 +7,7 @@ import UserSection from "./UserSection"
 import PostContainer from "../Post/PostContainer"
 import { useAppDispatch, useAppSelector } from "../../Store/Store"
 import { useEffect, useRef, useState } from "react"
-import { getUsers, updateUser } from "../../Store/UserSlice"
+import { getLoginnedUser, getUsers, updateUser } from "../../Store/UserSlice"
 import { getPosts, updatePosts } from "../../Store/PostSlice"
 import UserImg from "./UserImg"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -66,6 +66,7 @@ const User = () => {
     useEffect(() => {
         dispatch(getPosts())
         dispatch(getUsers())
+        dispatch(getLoginnedUser())
         scrollTo(0, 0)
     }, [])
 
@@ -98,7 +99,6 @@ const User = () => {
                             }}>Add Imgae</button></div>
                         </form>
                     </div>
-
                     <div>
                         <span>Suggested Photos</span>
                         <hr />
@@ -118,7 +118,6 @@ const User = () => {
                 <div className="user-page">
                     <div className="row justify-content-center">
                         <div className="col-lg-8 col-md-10 ">
-
                             {/* Main Div */}
                             <div className="bg-white text-center text-lg-start">
                                 <div className="main-img">

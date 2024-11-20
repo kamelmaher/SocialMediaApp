@@ -53,7 +53,7 @@ const PostDetails = ({ handleFromChild }: PostDetailsProps) => {
     return (
         <>
             <div className="d-flex gap-2 align-items-center">
-                <UserImg />
+                <UserImg myUser={loginnedUser} />
                 <div>
                     <p className="name">
                         {loginnedUser.fname} {loginnedUser.lname}

@@ -83,15 +83,19 @@
     background-color: #44454627;
 }
 
-.menu {
-    width: 80% !important;
-    height: 50px;
+.notidications-counter {
     position: absolute;
-    bottom: calc(-100% - 10px);
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    top: 0;
     left: 0;
-    background-color: white;
-    border-radius: 10px;
-    display: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
 }
 
 .sidebar {

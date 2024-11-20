@@ -28,6 +28,10 @@ h6 {
     margin: 0 !important;
 }
 
+ul {
+    padding: 0 !important;
+}
+
 .pointer {
     cursor: pointer;
 }
