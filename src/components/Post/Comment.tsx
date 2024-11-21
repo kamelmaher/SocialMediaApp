@@ -13,9 +13,13 @@ const Comment = ({ addComment, comment, getCommentText, sendComment }: CommentPr
             getCommentText(event);
         }
     };
+
     const users = useAppSelector(state => state.User.users)
     const loginnedUser = useAppSelector(state => state.User.loginnedUser)
+
+    // Hard 
     const myUser = users.filter(e => e.id == comment?.userId)[0]
+
     return (
         <>
             {

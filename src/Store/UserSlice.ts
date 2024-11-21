@@ -132,27 +132,31 @@ export const UserSlice = createSlice({
         }
 
         case "like": {
-          action.payload.post?.interactions.likes.map((like) => {
-            if (
-              like.userId == state.loginnedUser.id &&
-              like.postId == action.payload.post?.id
-            ) {
-              userFound = true;
-            }
-          });
-
-          if (!userFound)
-            user.notifications.likes.push({
-              ...action.payload,
-              userId: state.loginnedUser.id,
+          // check if user is not the loginned user
+          if (action.payload.post?.user.id != state.loginnedUser.id) {
+            action.payload.post?.interactions.likes.map((like) => {
+              if (
+                like.userId == state.loginnedUser.id &&
+                like.postId == action.payload.post?.id
+              ) {
+                userFound = true;
+              }
             });
-          else {
-            user.notifications.likes = user.notifications.likes.filter(
-              (e) =>
-                e.userId != state.loginnedUser.id &&
-                e.post?.id != action.payload.post?.id
-            );
+
+            if (!userFound)
+              user.notifications.likes.push({
+                ...action.payload,
+                userId: state.loginnedUser.id,
+              });
+            else {
+              user.notifications.likes = user.notifications.likes.filter(
+                (e) =>
+                  e.userId != state.loginnedUser.id &&
+                  e.post?.id != action.payload.post?.id
+              );
+            }
           }
+
           break;
         }
       }

@@ -18,7 +18,7 @@ const SuggestedContainer = () => {
     const suggested = notUser.filter(notUser => {
         let isFriend = false
         loginnedUser.friends.map(friend => {
-            if (friend.id == notUser.id) isFriend = true
+            if (friend == notUser.id) isFriend = true
         })
         if (!isFriend) return notUser
     })
@@ -32,8 +32,7 @@ const SuggestedContainer = () => {
             </div>
             <Swiper
                 spaceBetween={5}
-                slidesPerView={2.5}
-                style={{ overflow: "hidden" }}
+                slidesPerView={2}
                 modules={[Navigation]}
                 navigation
             >

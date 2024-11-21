@@ -11,7 +11,7 @@ const UserImg = ({ style, className, myUser }: userImgProps) => {
             {
                 myUser &&
                 <NavLink className="img" to={`/user/${myUser.id}`} >
-                    <img src={myUser.img} className={`${className} rounded-circle`} style={
+                    <img src={myUser.img} className={`${className} rounded-circle`} loading="lazy" style={
                         !style ?
                             { width: "45px", height: "45px" }
                             :

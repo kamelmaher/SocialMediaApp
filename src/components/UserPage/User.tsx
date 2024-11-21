@@ -24,10 +24,17 @@ const User = () => {
     const users = useAppSelector(state => state.User.users)
     const user = users.filter(e => e.id == +userId!)[0]
     const loginnedUser = useAppSelector(state => state.User.loginnedUser)
+    const friends = users.filter(user => {
+        loginnedUser.friends.map(e => {
+            if (e == user.id) return e
+        })
+    })
 
     const posts = useAppSelector(state => state.Post.posts)
     const userPosts = posts.filter(e => e.user.id == user.id)
-    const images = userPosts.map(e => e.imgPath)
+    const images = userPosts.map(e => {
+        if (e.imgPath != "") return e.imgPath
+    })
 
     const abouts = [{ text: "Lives in Gaza", icon: faHome }, { text: "Single", icon: faHeart }]
 
@@ -104,7 +111,7 @@ const User = () => {
                         <hr />
                         <div className="row mt-2">
                             {
-                                images.map((e, i) => <div key={i} className="col-md-3 p-1 pointer" onClick={() => setNewImg(e)}>
+                                images.map((e, i) => <div key={i} className="col-md-3 p-1 pointer" onClick={() => setNewImg(e!)}>
                                     <img src={e} alt="" className="img-fluid" />
                                 </div>)
                             }
@@ -165,7 +172,7 @@ const User = () => {
 
                                     <UserSection text="images" images={images} />
 
-                                    <UserSection text="friends" friends={user.friends} />
+                                    <UserSection text="friends" friends={friends} />
                                 </div>
 
                                 <div className="col-lg-7 p-2">

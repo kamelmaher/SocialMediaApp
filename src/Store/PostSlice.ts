@@ -59,6 +59,7 @@ export const postSlice = createSlice({
           }
         }
       });
+      
       localStorage.setItem("posts", JSON.stringify(state.posts));
     },
     createPost: (state, action: PayloadAction<PostType>) => {

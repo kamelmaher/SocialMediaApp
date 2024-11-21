@@ -33,7 +33,7 @@ const Post = ({ post }: PostProps) => {
         }
     })
 
-    const interacts = [{ title: "Like", icon: isLiked ? faThumbsUp : LikeButton }
+    const interacts = [{ title: "like", icon: isLiked ? faThumbsUp : LikeButton }
         , { title: "comment", icon: messageIcon }
         , { title: "Share", icon: shareIcon }
     ]
@@ -80,18 +80,21 @@ const Post = ({ post }: PostProps) => {
                                 </div>
                             </div>
                         </div>
-                        
-                        <div className="post-text mt-2 p-2">
+
+                        <div className="post-text mt-2 p-2 ps-0">
                             <pre style={{ fontFamily: "inherit", color: "#080809" }} className="mb-0">
                                 {
                                     `${post.text}`
                                 }
                             </pre>
                         </div>
-                        
-                        <div className="post-img w-100">
-                            <img src={post.imgPath} alt="post-img" style={{ maxHeight: "400px", width: "100%" }} />
-                        </div>
+
+                        {
+                            post.imgPath != "" &&
+                            <div className="post-img w-100">
+                                <img src={post.imgPath} alt="post-img" loading="lazy" style={{ maxHeight: "400px", width: "100%" }} />
+                            </div>
+                        }
 
                         <div className="post-details mt-1 d-flex justify-content-between">
                             <div className="reatcions d-flex align-items-center">
@@ -99,15 +102,21 @@ const Post = ({ post }: PostProps) => {
                                     post.interactions.likes.length > 0 &&
                                     <>
                                         {
-                                            post.interactions.likes.map((e, id) => {
+                                            interacts.map((e, id) => {
+                                                let found = false
                                                 x += 5
-                                                return <span key={id} style={{
-                                                    transform: `translateX(-${x}px)`
-                                                }}>
-                                                    {
-                                                        e.name == "like" ? <LikeIcon /> : e.name == "love" ? <LoveIcon /> : e.name == "sad" ? <SadIcon /> : <LaughIcon />
-                                                    }
-                                                </span>
+                                                console.log(e.title)
+                                                post.interactions.likes.map(like => {
+                                                    if (e.title == like.name) found = true
+                                                })
+                                                if (found)
+                                                    return <span key={id} style={{
+                                                        transform: `translateX(-${x}px)`
+                                                    }}>
+
+                                                        {/* {e.icon} */}
+                                                        {e.title == "like" ? <LikeIcon /> : e.title == "love" ? <LoveIcon /> : e.title == "sad" ? <SadIcon /> : <LaughIcon />}
+                                                    </span>
                                             })
                                         }
                                     </>
@@ -122,7 +131,7 @@ const Post = ({ post }: PostProps) => {
                                 <span>100 shares</span>
                             </div>
                         </div>
-                        
+
                         <div className="post-interacts d-flex mt-2">
                             {
                                 interacts.map((e) => {
@@ -139,6 +148,7 @@ const Post = ({ post }: PostProps) => {
                                 })
                             }
                         </div>
+
                         {
                             // Add Comment
                             isComment &&

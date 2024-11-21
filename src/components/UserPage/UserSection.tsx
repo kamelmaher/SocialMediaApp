@@ -3,11 +3,12 @@ import { User } from "../../types/User"
 
 type UserSectionProps = {
     text: string,
-    images?: string[],
+    images?: (string | undefined)[],
     friends?: User[]
 }
 const UserSection = ({ text, images, friends }: UserSectionProps) => {
     const navigate = useNavigate()
+
     return (
         <div className="my-card">
             <div className="user-section-heading d-flex justify-content-between">
@@ -17,11 +18,19 @@ const UserSection = ({ text, images, friends }: UserSectionProps) => {
             <div className="row mt-2">
                 {
                     images &&
-                    images.map((e, i) => <div key={i} className="col-4 p-1 pointer">
-                        <div className="img">
-                            <img src={e} alt="" style={{ width: "100%", maxHeight: "130px", objectFit: "cover" }} />
+                    images.map((e, i) => {
+                        return <div key={i}>
+                            {
+                                e != undefined &&
+                                <div className="col-4 p-1 pointer">
+                                    <div className="img">
+                                        <img src={e} alt="" style={{ width: "100%", maxHeight: "130px", objectFit: "cover" }} />
+                                    </div>
+                                </div>
+                            }
                         </div>
-                    </div>)
+                    }
+                    )
                 }
                 {
                     friends &&
