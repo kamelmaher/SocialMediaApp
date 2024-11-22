@@ -9,13 +9,13 @@ import { getPosts } from "../Store/PostSlice"
 import { getLoginnedUser, getUsers } from "../Store/UserSlice"
 const Layout = () => {
     const dispatch = useAppDispatch()
-    
+
     useEffect(() => {
         dispatch(getPosts())
         dispatch(getUsers())
         dispatch(getLoginnedUser())
     }, [])
-    
+
     return (
         <div className="main-layout">
             <TopBar />
@@ -24,9 +24,7 @@ const Layout = () => {
                     <ListContainer />
                 </div>
                 <div className="col-12 col-lg-6 col-sm-9 d-flex justify-content-center align-items-start padding">
-                    <div>
-                        <Outlet />
-                    </div>
+                    <Outlet />
                 </div>
                 <div className="col-2 d-none d-lg-block ">
                     <AdPage />

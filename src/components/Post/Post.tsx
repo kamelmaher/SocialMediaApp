@@ -17,9 +17,10 @@ import Comment from "./Comment"
 import UserImg from "../UserPage/UserImg"
 import { notify } from "../../Store/UserSlice"
 type PostProps = {
-    post: PostType
+    post: PostType,
+    showComment?: boolean
 }
-const Post = ({ post }: PostProps) => {
+const Post = ({ post, showComment }: PostProps) => {
 
     const dispatch = useAppDispatch()
     const loginnedUser = useAppSelector(state => state.User.loginnedUser)
@@ -40,7 +41,7 @@ const Post = ({ post }: PostProps) => {
 
     const [isComment, setIsComment] = useState(false)
     const [commentText, setCommentText] = useState("")
-    const [showComments, setShowComments] = useState(false)
+    const [showComments, setShowComments] = useState(showComment ? showComment : false)
 
     const getCommentText = (e: ChangeEvent<HTMLInputElement>) => {
         setCommentText(e.target.value)
@@ -105,7 +106,6 @@ const Post = ({ post }: PostProps) => {
                                             interacts.map((e, id) => {
                                                 let found = false
                                                 x += 5
-                                                console.log(e.title)
                                                 post.interactions.likes.map(like => {
                                                     if (e.title == like.name) found = true
                                                 })
@@ -148,15 +148,15 @@ const Post = ({ post }: PostProps) => {
                                 })
                             }
                         </div>
-
                         {
                             // Add Comment
                             isComment &&
                             <Comment addComment={true} getCommentText={getCommentText} sendComment={sendComment} />
                         }
+
                         {
                             // Comment List 
-                            showComments &&
+                            (showComment || showComments) &&
                             <div className="comments">
                                 <CommentsList post={post} />
                             </div>

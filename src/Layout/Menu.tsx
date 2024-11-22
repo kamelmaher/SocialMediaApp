@@ -4,15 +4,21 @@ import { faEllipsis } from "@fortawesome/free-solid-svg-icons"
 import Notification from "./Notification"
 import { useAppSelector } from "../Store/Store"
 import { useEffect, useRef, useState } from "react"
+import { Notification as NotificationType } from "../types/Notification"
 type MenuProps = {
     handleFromChild: (e: boolean) => void
     visible: boolean
 }
 const Menu = ({ handleFromChild, visible }: MenuProps) => {
     const loginnedUser = useAppSelector(state => state.User.loginnedUser)
-    const requests = loginnedUser.notifications.requests
-    const likes = loginnedUser.notifications.likes
-    const comments = loginnedUser.notifications.comments
+    // const requests = loginnedUser.notifications.requests
+    // const likes = loginnedUser.notifications.likes
+    // const comments = loginnedUser.notifications.comments
+    const [filtered, setFiltered] = useState<NotificationType>({
+        requests: [],
+        likes: [],
+        comments: []
+    })
     const [isVisible, setIsVisible] = useState(visible);
 
 
@@ -25,8 +31,16 @@ const Menu = ({ handleFromChild, visible }: MenuProps) => {
         }
     };
     useEffect(() => {
+        setFiltered({
+            requests: loginnedUser.notifications.requests,
+            likes: loginnedUser.notifications.likes,
+            comments: loginnedUser.notifications.comments
+        })
+    }, [loginnedUser])
+    useEffect(() => {
         setIsVisible(visible)
     }, [visible])
+
     useEffect(() => {
         if (isVisible) {
             document.addEventListener('mousedown', handleClickOutside);
@@ -35,6 +49,23 @@ const Menu = ({ handleFromChild, visible }: MenuProps) => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, [isVisible]);
+
+    const closeMenu = () => {
+        setIsVisible(false)
+        handleFromChild(false)
+    }
+    const filterNotifications = (e: string) => {
+        switch (e) {
+            case "All": setFiltered({ requests: loginnedUser.notifications.requests, likes: loginnedUser.notifications.likes, comments: loginnedUser.notifications.comments })
+                break;
+            case "Unread": setFiltered({
+                requests: loginnedUser.notifications.requests.filter(e => e.hasRead == false),
+                likes: loginnedUser.notifications.likes.filter(e => e.hasRead == false),
+                comments: loginnedUser.notifications.comments.filter(e => e.hasRead == false)
+            })
+        }
+    }
+    const noNotifications = <p style={{ fontSize: "14px", padding: "8px" }}>There is No Unread Notifications</p>
     return (
         <>
             {isVisible &&
@@ -46,45 +77,52 @@ const Menu = ({ handleFromChild, visible }: MenuProps) => {
                                 <FontAwesomeIcon icon={faEllipsis}></FontAwesomeIcon>
                             </div>
                             <div className="filters mt-2">
-                                <button className="btn btn-primary active me-2">All</button>
-                                <button className="btn btn-primary ">Unread</button>
+                                <button className="btn btn-primary active me-2" onClick={() => filterNotifications("All")}>All</button>
+                                <button className="btn btn-primary" onClick={() => filterNotifications("Unread")}>Unread</button>
                             </div>
                         </div>
                         <div className="notifications mt-2">
-                            <ul className="list-unstyled">
-                                {
-                                    requests.length > 0 &&
-                                    <>
-                                        <li className="bg-secondary p-2">Friend Requests</li>
+                            {
+                                (filtered.requests.length > 0 ||
+                                    filtered.likes.length ||
+                                    filtered.comments.length) ?
+                                    <ul className="list-unstyled">
                                         {
-                                            requests.map((e, i) => <Notification key={i} notification={e} />)
+                                            filtered.requests.length > 0 &&
+                                            <>
+                                                <li className="bg-secondary p-2">Friend Requests</li>
+                                                {
+                                                    filtered.requests.map((e, i) => <Notification key={i} notification={e} closeMenu={closeMenu} />)
+                                                }
+                                            </>
                                         }
-                                    </>
-                                }
 
-                                {
-                                    likes.length > 0 &&
-                                    <>
-                                        <li className="bg-secondary p-2">Likes</li>
                                         {
-                                            likes.map((e, i) => <Notification key={i} notification={e} />)
+                                            filtered.likes.length > 0 &&
+                                            <>
+                                                <li className="bg-secondary p-2">Likes</li>
+                                                {
+                                                    filtered.likes.map((e, i) => <Notification key={i} notification={e} closeMenu={closeMenu} />)
+                                                }
+                                            </>
                                         }
-                                    </>
-                                }
 
-                                {
-                                    comments.length > 0 &&
-                                    <>
-                                        <li className="bg-secondary p-2">Comments</li>
                                         {
-                                            comments.map((e, i) => <Notification key={i} notification={e} />)
+                                            filtered.comments.length > 0 &&
+                                            <>
+                                                <li className="bg-secondary p-2">Comments</li>
+                                                {
+                                                    filtered.comments.map((e, i) => <Notification key={i} notification={e} closeMenu={closeMenu} />)
+                                                }
+                                            </>
                                         }
-                                    </>
-                                }
-                            </ul>
+
+                                    </ul> : noNotifications
+                            }
+
                         </div>
                     </div>
-                </div>
+                </div >
             }
         </>
 

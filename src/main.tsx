@@ -11,6 +11,7 @@ import { Provider } from 'react-redux'
 import Login from './components/Login/Login.tsx'
 import SignUp from './components/Login/SignUp.tsx'
 import LoginPageContainer from './components/Login/LoginPageContainer.tsx'
+import ViewPost from './components/Post/ViewPost.tsx'
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route>
@@ -21,6 +22,7 @@ const router = createBrowserRouter(
             <Route path='/' element={<Layout />}>
                 <Route path='/' element={<Home />}></Route>
                 <Route path='/list/:id' element={<List />}></Route>
+                <Route path='/post/:postId' element={<ViewPost />} />
             </Route>
             <Route path='/user/:userId' element={<User />}></Route>
         </Route>
