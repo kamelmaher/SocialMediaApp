@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "../../Store/Store";
 import { User } from "../../types/User";
 import { signUp } from "../../Store/UserSlice";
 import { useNavigate } from "react-router";
+import person from "../../../img/personimg.png"
 const SignUp = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate()
@@ -53,7 +54,7 @@ const SignUp = () => {
                 password: data.password,
                 gender: data.gender,
                 age: age,
-                img: "",
+                img: person,
                 friends: [],
                 notifications: {
                     requests: [],

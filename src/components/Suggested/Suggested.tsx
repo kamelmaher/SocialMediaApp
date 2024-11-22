@@ -25,12 +25,12 @@ const Suggested = ({ user }: SuggestedProps) => {
             <div className="card-img-top" style={{ overflow: "hidden", height: "200px" }}>
                 <img src={user.img} alt="" className="img-fluid h-100 w-100" style={{ objectFit: "cover" }} />
             </div>
-            <div className="card-body">
+            <div className="card-body p-2">
                 <div className="name mb-3">
                     <h5>{user.fname} {user.lname}</h5>
                 </div>
                 <div className="mutual-friends"></div>
-                <div className="add-friend" onClick={() => {
+                <div className="add-friend text-center" onClick={() => {
                     setAdded(!added)
                     dispatch(notify({ id: Math.floor(Math.random() * 1000) + 1, userId: user.id, type: "request", hasRead: false }))
 

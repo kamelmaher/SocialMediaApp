@@ -32,7 +32,7 @@ const SuggestedContainer = () => {
             </div>
             <Swiper
                 spaceBetween={5}
-                slidesPerView={2}
+                slidesPerView={2.5}
                 modules={[Navigation]}
                 navigation
             >
