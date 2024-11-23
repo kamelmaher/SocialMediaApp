@@ -91,29 +91,35 @@ const User = () => {
                                 upload photo</button>
                             {
                                 newImg != "" &&
-                                <div className="selected-img">
-                                    <span>Selected Img:</span>
-                                    <div>
-                                        <img src={newImg} alt="" className="img-fluid" />
+                                <>
+                                    <div className="selected-img">
+                                        <span>Selected Img:</span>
+                                        <div>
+                                            <img src={newImg} alt="" className="img-fluid" />
+                                        </div>
                                     </div>
-                                </div>
+                                    <div className="mt-2"><button className="btn btn-primary" onClick={() => {
+                                        changePhoto()
+                                    }}>Add Imgae</button></div>
+                                </>
                             }
-                            <div className="mt-2"><button className="btn btn-primary" onClick={() => {
-                                changePhoto()
-                            }}>Add Imgae</button></div>
                         </form>
                     </div>
-                    <div>
-                        <span>Suggested Photos</span>
-                        <hr />
-                        <div className="row mt-2">
-                            {
-                                images.map((e, i) => <div key={i} className="col-md-3 p-1 pointer" onClick={() => setNewImg(e!)}>
-                                    <img src={e} alt="" className="img-fluid" />
-                                </div>)
-                            }
+                    {
+                        images.length > 0 &&
+                        <div >
+                            <span>Suggested Photos</span>
+                            <hr />
+                            <div className="row mt-2">
+                                {
+                                    images.map((e, i) => <div key={i} className="col-md-3 p-1 pointer" onClick={() => setNewImg(e!)}>
+                                        <img src={e} alt="" className="img-fluid" />
+                                    </div>)
+                                }
+                            </div>
                         </div>
-                    </div>
+                    }
+
                 </Adding>
             }
             <TopBar />
@@ -190,7 +196,7 @@ const User = () => {
                     </div>
                 </div>
             }
-        </div>
+        </div >
     )
 }
 

@@ -17,19 +17,19 @@ import Loader from './Loader.tsx'
 import ProtectedRoute from './ProtectedRoute.tsx'
 const router = createBrowserRouter(
     createRoutesFromElements(
-        <Route path='/' element={<Loader />}>
+        <Route  element={<Loader />}>
             <Route path='auth/' element={<LoginPageContainer />}>
                 <Route path='login' element={<Login />} />
                 <Route path='signup' element={<SignUp />} />
             </Route>
             <Route path='/' element={<ProtectedRoute />}>
-                <Route element={<Layout />}>
+                <Route path='/' element={<Layout />}>
                     <Route path='/' element={<Home />}></Route>
                     <Route path='/list/:id' element={<List />}></Route>
                     <Route path='/post/:postId' element={<ViewPost />} />
                     <Route path='/requests' element={<FriendsRequests />} />
                 </Route>
-                <Route path='/user/:userId' element={<User />}></Route>
+                <Route path='user/:userId' element={<User />}></Route>
             </Route>
         </Route>
     )

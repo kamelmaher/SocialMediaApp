@@ -7,7 +7,7 @@ import SuggestedContainer from "../Suggested/SuggestedContainer"
 const Home = () => {
     const posts = useAppSelector(State => State.Post.posts)
     return (
-        <div className="homepage">
+        <div className="homepage m-auto">
             <div>
                 <CreatePost />
             </div>

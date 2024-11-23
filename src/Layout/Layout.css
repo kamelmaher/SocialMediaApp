@@ -131,8 +131,3 @@
     border-radius: 4px;
 }
 
-@media (min-width: 992px) {
-    .padding {
-        margin-left: 275px;
-    }
-}

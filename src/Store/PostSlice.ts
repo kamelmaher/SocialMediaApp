@@ -91,9 +91,19 @@ export const postSlice = createSlice({
       });
       localStorage.setItem("posts", JSON.stringify(state.posts));
     },
+    deletePost: (state, action: PayloadAction<number>) => {
+      const posts = state.posts.filter((post) => post.id != action.payload);
+      localStorage.setItem("posts", JSON.stringify(posts));
+    },
   },
 });
 
-export const { getPosts, likePost, createPost, comment, updatePosts } =
-  postSlice.actions;
+export const {
+  getPosts,
+  likePost,
+  createPost,
+  comment,
+  updatePosts,
+  deletePost,
+} = postSlice.actions;
 export default postSlice.reducer;

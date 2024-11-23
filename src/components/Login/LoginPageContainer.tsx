@@ -16,7 +16,6 @@ const LoginPageContainer = () => {
                         </div>
                         <div className="accounts row gap-3 justify-content-md-start justify-content-center">
                             <Account isActive={true} />
-                            <Account isActive={true} />
                             <Account isActive={false} />
                         </div>
                     </div>

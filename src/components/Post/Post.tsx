@@ -7,7 +7,7 @@ import ReactType from "./ReactType"
 import { ChangeEvent, useState } from "react"
 import { useAppDispatch, useAppSelector } from "../../Store/Store"
 import { PostType } from "../../types/Post"
-import { comment, likePost } from "../../Store/PostSlice"
+import { comment, likePost, deletePost as Delete } from "../../Store/PostSlice"
 import LikeIcon from "../../Icons/LikeIcon"
 import LoveIcon from "../../Icons/LoveIcon"
 import LaughIcon from "../../Icons/LaughIcon"
@@ -52,7 +52,15 @@ const Post = ({ post, showComment }: PostProps) => {
         dispatch(comment({ id: post.id, userId: loginnedUser.id, text: commentText, postId: post.id }))
         setIsComment(false)
     }
-
+    const deleting = () => {
+        if (post.user.id == loginnedUser.id) {
+            dispatch(Delete(post.id))
+            return <p>Post Deleted Succefully!</p>
+        }
+        else {
+            return <p>You Are Not Authorized to Delete This Post!</p>
+        }
+    }
     let x = -5
     return (
         <div className="my-card post">
@@ -93,7 +101,7 @@ const Post = ({ post, showComment }: PostProps) => {
                         {
                             post.imgPath != "" &&
                             <div className="post-img w-100">
-                                <img src={post.imgPath} alt="post-img" loading="lazy" style={{ maxHeight: "400px", width: "100%" }} />
+                                <img src={post.imgPath} alt="post-img" loading="lazy" style={{ maxHeight: "400px", width: "100%", objectFit: "cover" }} />
                             </div>
                         }
 
@@ -165,7 +173,9 @@ const Post = ({ post, showComment }: PostProps) => {
                     :
                     <div>
                         <h5>Delete Post ?</h5>
-                        <button className="btn btn-primary me-3" onClick={() => { }}
+                        <button className="btn btn-primary me-3" onClick={() => {
+                            deleting()
+                        }}
                         >Delete</button>
                         <button className="btn btn-primary" onClick={() => {
                             setDeletePost(false)
