@@ -14,7 +14,7 @@ const SignUp = () => {
         fname: z.string().min(3, "First Name is required"),
         lname: z.string().min(3, "Last Name is required"),
         email: z.string().email("Invalid email address"),
-        password: z.string().min(4, "Too Short Password"),
+        // password: z.string().min(4, "Too Short Password"),
         age: z.string({ required_error: "Date is required" }).transform((value) => new Date(value))
             .refine((date) => !isNaN(date.getTime()), "Invalid date format")
             .refine(
@@ -51,7 +51,7 @@ const SignUp = () => {
                 fname: data.fname,
                 lname: data.lname,
                 email: data.email,
-                password: data.password,
+                // password: data.password,
                 gender: data.gender,
                 age: age,
                 img: person,
@@ -98,11 +98,10 @@ const SignUp = () => {
                     <input type="email" placeholder="Email" className="form-control" {...register("email")} />
                     {errors.email && <p className="text-danger">{errors.email.message}</p>}
                 </div>
-                <div>
+                {/* <div>
                     <input type="password" placeholder="Password" className="form-control" {...register("password")} />
                     {errors.password && <p className="text-danger">{errors.password.message}</p>}
-
-                </div>
+                </div> */}
                 <div className="text-center">
                     <button className="btn btn-success mb-2">Sign Up</button>
                     <a href="" className="d-block" onClick={() => navigate("/auth/login")}> Already have account?</a>
