@@ -1,36 +1,32 @@
 import { ChangeEvent } from "react"
 import { Comment as CommentType } from "../../types/Comment"
 import { useAppSelector } from "../../Store/Store"
+import { User } from "../../types/User"
 type CommentProps = {
     addComment: boolean
     comment?: CommentType
     getCommentText?: (e: ChangeEvent<HTMLInputElement>) => void
     sendComment?: () => void
+    user?: User
 }
-const Comment = ({ addComment, comment, getCommentText, sendComment }: CommentProps) => {
+const Comment = ({ addComment, comment, getCommentText, sendComment, user }: CommentProps) => {
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         if (getCommentText) {
             getCommentText(event);
         }
     };
-
-    const users = useAppSelector(state => state.User.users)
     const loginnedUser = useAppSelector(state => state.User.loginnedUser)
-
-    // Hard 
-    const myUser = users.filter(e => e.id == comment?.userId)[0]
-
     return (
         <>
             {
                 <div className="comment d-flex gap-2 mt-2">
                     <div>
-                        <img src={addComment ? loginnedUser.img : myUser.img} alt="" className="img-fluid rounded-circle" style={{ width: "35px", height: "35px" }} />
+                        <img src={addComment ? loginnedUser.img : user!.img} alt="" className="img-fluid rounded-circle" style={{ width: "35px", height: "35px" }} />
                     </div>
                     {
                         !addComment ?
                             <div className="single-comment">
-                                <p>{myUser.fname} {myUser.lname}</p>
+                                <p>{user!.fname} {user!.lname}</p>
                                 <div>
                                     {comment?.text}
                                 </div>

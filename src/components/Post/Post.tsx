@@ -136,9 +136,9 @@ const Post = ({ post, showComment }: PostProps) => {
                             {
                                 interacts.map((e) => {
                                     return <ReactType title={e.title} icon={e.icon} key={e.title} handleClick={() => {
-                                        if (e.title == "Like") {
+                                        if (e.title == "like") {
 
-                                            // Like Post 
+                                            // Like Post
                                             dispatch(likePost({ id: post.id, userId: loginnedUser.id, postId: post.id }))
                                             dispatch(notify({ type: "like", userId: post.user.id, id: Math.floor(Math.random() * 1000) + 1, hasRead: false, post: post }))
                                         } else if (e.title == "comment") {
