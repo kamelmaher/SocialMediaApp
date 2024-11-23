@@ -87,19 +87,6 @@ export const UserSlice = createSlice({
         localStorage.setItem("users", JSON.stringify(state.users));
       }
     },
-    requestFriend: (state, action: PayloadAction<User>) => {
-      action.payload.notifications.requests.push({
-        userId: state.loginnedUser.id,
-        hasRead: false,
-        id: Math.floor(Math.random() * 1000) + 1,
-        type: "request",
-      });
-      state.users.map((e) => {
-        if (e.id == action.payload.id)
-          e.notifications = action.payload.notifications;
-      });
-      localStorage.setItem("users", JSON.stringify(state.users));
-    },
     notify: (state, action: PayloadAction<Notify>) => {
       const user = state.users.filter((e) => e.id == action.payload.userId)[0];
       let userFound = false;
@@ -193,6 +180,17 @@ export const UserSlice = createSlice({
       localStorage.setItem("loginnedUser", JSON.stringify(state.loginnedUser));
       localStorage.setItem("users", JSON.stringify(newUsers));
     },
+    deleteRequest: (state, action: PayloadAction<number>) => {
+      state.loginnedUser.notifications.requests =
+        state.loginnedUser.notifications.requests.filter(
+          (e) => e.userId != action.payload
+        );
+      state.users.map((e) => {
+        if (e.id == state.loginnedUser.id) e = state.loginnedUser;
+      });
+      localStorage.setItem("loginnedUser", JSON.stringify(state.loginnedUser));
+      localStorage.setItem("users", JSON.stringify(state.users));
+    },
   },
 });
 
@@ -203,8 +201,8 @@ export const {
   getLoginnedUser,
   updateUser,
   addFriend,
-  requestFriend,
   notify,
   readNotify,
+  deleteRequest,
 } = UserSlice.actions;
 export default UserSlice.reducer;

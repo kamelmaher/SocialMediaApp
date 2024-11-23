@@ -54,7 +54,7 @@ const Login = () => {
                 <a href="#" className="mb-4 d-block">Forgetten Password?</a>
             </div>
             <hr />
-            <button className="btn btn-success w-100 pt-2 pb-2 fs-5 mt-4">Create Account</button>
+            <button className="btn btn-success w-100 pt-2 pb-2 fs-5 mt-4" onClick={() => navigate("/auth/signup")}>Create Account</button>
         </form>
     )
 }

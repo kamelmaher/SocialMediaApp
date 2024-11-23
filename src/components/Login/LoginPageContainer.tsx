@@ -16,15 +16,18 @@ const LoginPageContainer = () => {
                     <div>
                         <h2 className="heading">Facebook</h2>
                     </div>
-                    <div className="mt-2 mb-3" style={{ fontWeight: "300" }}>
-                        <h3>Recent Logins</h3>
-                        <p style={{ fontSize: "14px" }}>Click your picture or add an account.</p>
+                    <div className="d-none d-md-block">
+                        <div className="mt-2 mb-3" style={{ fontWeight: "300" }}>
+                            <h3>Recent Logins</h3>
+                            <p style={{ fontSize: "14px" }}>Click your picture or add an account.</p>
+                        </div>
+                        <div className="accounts row gap-3 justify-content-md-start justify-content-center">
+                            <Account isActive={true} />
+                            <Account isActive={true} />
+                            <Account isActive={false} />
+                        </div>
                     </div>
-                    <div className="accounts row gap-3 justify-content-md-start justify-content-center">
-                        <Account isActive={true} />
-                        <Account isActive={true} />
-                        <Account isActive={false} />
-                    </div>
+
                 </div>
                 <div className="col-md-6 mt-md-auto mb-auto mt-4">
                     <div className="card login m-auto">

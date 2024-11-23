@@ -23,13 +23,13 @@ type PostProps = {
 const Post = ({ post, showComment }: PostProps) => {
 
     const dispatch = useAppDispatch()
-    const loginnedUser = useAppSelector(state => state.User.loginnedUser)
+    const loginnedUser = useAppSelector(state => state.User.loginnedUser);
     const [deletePost, setDeletePost] = useState(false);
 
     let isLiked = false
 
     post.interactions.likes.map(e => {
-        if (e.userId == loginnedUser.id) {
+        if (e.userId == loginnedUser.id && post.id == e.postId) {
             isLiked = true
         }
     })

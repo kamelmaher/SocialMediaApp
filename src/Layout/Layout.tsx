@@ -24,7 +24,9 @@ const Layout = () => {
                     <ListContainer />
                 </div>
                 <div className="col-12 col-lg-6 col-sm-9 d-flex justify-content-center align-items-start padding">
-                    <Outlet />
+                    <div className="w-100">
+                        <Outlet />
+                    </div>
                 </div>
                 <div className="col-2 d-none d-lg-block ">
                     <AdPage />
