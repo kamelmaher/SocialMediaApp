@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router"
 
 const ProtectedRoute = () => {
-    const user = localStorage.getItem("loginnedUser")
+    const user = sessionStorage.getItem("loginnedUser")
     if (!user)
         return <Navigate to={"/auth/login"}></Navigate>
     else

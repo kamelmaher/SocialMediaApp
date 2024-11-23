@@ -34,26 +34,24 @@ export const UserSlice = createSlice({
   reducers: {
     logIn: (state, action: PayloadAction<User>) => {
       state.loginnedUser = action.payload;
-      localStorage.setItem("loginnedUser", JSON.stringify(state.loginnedUser));
+      sessionStorage.setItem(
+        "loginnedUser",
+        JSON.stringify(state.loginnedUser)
+      );
     },
     signUp: (state, action: PayloadAction<User>) => {
-      // const data = localStorage.getItem("users");
-      // if (data) {
-      //   const parsedData = JSON.parse(data);
-      //   state.users = parsedData;
-      // }
       state.users.push(action.payload);
-      localStorage.setItem("users", JSON.stringify(state.users));
+      sessionStorage.setItem("users", JSON.stringify(state.users));
     },
     getUsers: (state) => {
-      const data = localStorage.getItem("users");
+      const data = sessionStorage.getItem("users");
       if (data) {
         const parsedData = JSON.parse(data);
         state.users = parsedData;
       }
     },
     getLoginnedUser: (state) => {
-      const user = localStorage.getItem("loginnedUser");
+      const user = sessionStorage.getItem("loginnedUser");
       if (user) {
         const parsedData = JSON.parse(user);
         state.loginnedUser = parsedData;
@@ -64,8 +62,11 @@ export const UserSlice = createSlice({
       state.users.map((e) => {
         if (e.id == state.loginnedUser.id) e.img = state.loginnedUser.img;
       });
-      localStorage.setItem("loginnedUser", JSON.stringify(state.loginnedUser));
-      localStorage.setItem("users", JSON.stringify(state.users));
+      sessionStorage.setItem(
+        "loginnedUser",
+        JSON.stringify(state.loginnedUser)
+      );
+      sessionStorage.setItem("users", JSON.stringify(state.users));
     },
     addFriend: (state, action: PayloadAction<User>) => {
       let friendFound = false;
@@ -76,7 +77,7 @@ export const UserSlice = createSlice({
       });
       if (!friendFound) {
         state.loginnedUser.friends.push(action.payload.id);
-        localStorage.setItem(
+        sessionStorage.setItem(
           "loginnedUser",
           JSON.stringify(state.loginnedUser)
         );
@@ -84,7 +85,7 @@ export const UserSlice = createSlice({
           if (e.id == state.loginnedUser.id)
             e.friends = state.loginnedUser.friends;
         });
-        localStorage.setItem("users", JSON.stringify(state.users));
+        sessionStorage.setItem("users", JSON.stringify(state.users));
       }
     },
     notify: (state, action: PayloadAction<Notify>) => {
@@ -151,7 +152,7 @@ export const UserSlice = createSlice({
       state.users.map((e) => {
         if (e.id == action.payload.userId) e.notifications = user.notifications;
       });
-      localStorage.setItem("users", JSON.stringify(state.users));
+      sessionStorage.setItem("users", JSON.stringify(state.users));
     },
     readNotify: (state, action: PayloadAction<Notify>) => {
       switch (action.payload.type) {
@@ -178,8 +179,11 @@ export const UserSlice = createSlice({
         return e;
       });
 
-      localStorage.setItem("loginnedUser", JSON.stringify(state.loginnedUser));
-      localStorage.setItem("users", JSON.stringify(newUsers));
+      sessionStorage.setItem(
+        "loginnedUser",
+        JSON.stringify(state.loginnedUser)
+      );
+      sessionStorage.setItem("users", JSON.stringify(newUsers));
     },
     deleteRequest: (state, action: PayloadAction<number>) => {
       state.loginnedUser.notifications.requests =
@@ -189,8 +193,11 @@ export const UserSlice = createSlice({
       state.users.map((e) => {
         if (e.id == state.loginnedUser.id) e = state.loginnedUser;
       });
-      localStorage.setItem("loginnedUser", JSON.stringify(state.loginnedUser));
-      localStorage.setItem("users", JSON.stringify(state.users));
+      sessionStorage.setItem(
+        "loginnedUser",
+        JSON.stringify(state.loginnedUser)
+      );
+      sessionStorage.setItem("users", JSON.stringify(state.users));
     },
   },
 });
