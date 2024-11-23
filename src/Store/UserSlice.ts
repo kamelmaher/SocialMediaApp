@@ -16,7 +16,7 @@ const initialState: UserState = {
     lname: "Maher",
     age: 19,
     email: "kamel@gmail.com",
-    // password: "123123",
+    password: "123123",
     gender: "male",
     img: "",
     friends: [],

@@ -26,7 +26,7 @@ const Login = () => {
     const onSubmit = (data: FormValues) => {
         let userFound = false
         users.map(user => {
-            if (user.email == data.email) {
+            if (user.email == data.email && user.password == data.password) {
                 dispatch(logIn(user))
                 userFound = true
                 navigate("/")
@@ -46,7 +46,7 @@ const Login = () => {
                 {errors.email?.message && <p className="text-danger">{errors.email.message}</p>}
             </div>
             <div className="mb-3">
-                <input type="password" className="form-control p-2" placeholder="type any password" {...register("password")} />
+                <input type="password" className="form-control p-2" placeholder="Password" {...register("password")} />
                 {errors.password?.message && <p className="text-danger">{errors.password.message}</p>}
             </div>
             <div className="text-center">

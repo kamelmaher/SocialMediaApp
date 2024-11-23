@@ -8,7 +8,7 @@ export type User = {
   lname: string;
   age: number;
   email: string;
-  // password: string;
+  password: string;
   gender: string;
   img: string;
   friends: number[];
