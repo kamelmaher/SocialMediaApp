@@ -3,19 +3,7 @@ import { Outlet } from "react-router-dom"
 import AdPage from "../components/Ads/AdPage"
 import ListContainer from "../components/List/ListContainer"
 import TopBar from "./TopBar"
-import { useEffect } from "react"
-import { useAppDispatch } from "../Store/Store"
-import { getPosts } from "../Store/PostSlice"
-import { getLoginnedUser, getUsers } from "../Store/UserSlice"
 const Layout = () => {
-    const dispatch = useAppDispatch()
-
-    useEffect(() => {
-        dispatch(getPosts())
-        dispatch(getUsers())
-        dispatch(getLoginnedUser())
-    }, [])
-
     return (
         <div className="main-layout">
             <TopBar />

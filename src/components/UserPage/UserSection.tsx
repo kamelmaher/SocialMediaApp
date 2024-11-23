@@ -1,13 +1,24 @@
 import { useNavigate } from "react-router"
+import { useAppSelector } from "../../Store/Store"
+import { useEffect, useState } from "react"
 import { User } from "../../types/User"
 
 type UserSectionProps = {
     text: string,
     images?: (string | undefined)[],
-    friends?: User[]
+    friends?: number[]
 }
 const UserSection = ({ text, images, friends }: UserSectionProps) => {
     const navigate = useNavigate()
+    const [myFriends, setMyFriends] = useState<User[]>([])
+    const users = useAppSelector(state => state.User.users)
+    useEffect(() => {
+        if (friends)
+            setMyFriends(friends?.map(friendId => {
+                const friend = users.find(user => user.id == friendId)!
+                return friend
+            }))
+    }, [])
 
     return (
         <div className="my-card">
@@ -33,8 +44,8 @@ const UserSection = ({ text, images, friends }: UserSectionProps) => {
                     )
                 }
                 {
-                    friends &&
-                    friends.map(e => {
+                    myFriends &&
+                    myFriends.map(e => {
                         return <div key={e.id} className="col-4 p-1 pointer" onClick={() => navigate(`/user/${e.id}`)}>
                             <div className="img">
                                 <img src={e.img} style={{ width: "100%", height: "150px", objectFit: "cover" }} />

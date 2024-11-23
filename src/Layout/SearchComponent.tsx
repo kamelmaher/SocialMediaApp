@@ -1,6 +1,7 @@
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useRef, useState } from 'react'
+import Search from './Search';
 // import Search from './Search'
 
 const SearchComponent = () => {
@@ -18,16 +19,16 @@ const SearchComponent = () => {
         };
     }, [])
     return (
-        <div className="search d-flex gap-2" onClick={() => {
+        <div className="search d-flex gap-2 pointer" onClick={() => {
             setIsVisible(true)
         }}>
             <div className="search-icon">
                 <FontAwesomeIcon icon={faMagnifyingGlass} />
             </div>
             <p className={`search-text d-none d-md-block`}>Search Facebook</p>
-            {/* {
+            {
                 isVisible && <Search reference={componentRef} />
-            } */}
+            }
         </div>
     )
 }

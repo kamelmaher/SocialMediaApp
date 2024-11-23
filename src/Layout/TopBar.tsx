@@ -31,6 +31,7 @@ const TopBar = () => {
                         width: "40px"
                     }} />
                 </div>
+                
                 <SearchComponent />
             </div>
             <div className="col-6 main-navbar d-none d-lg-block ">

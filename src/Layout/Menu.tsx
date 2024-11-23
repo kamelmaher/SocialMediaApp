@@ -11,9 +11,6 @@ type MenuProps = {
 }
 const Menu = ({ handleFromChild, visible }: MenuProps) => {
     const loginnedUser = useAppSelector(state => state.User.loginnedUser)
-    // const requests = loginnedUser.notifications.requests
-    // const likes = loginnedUser.notifications.likes
-    // const comments = loginnedUser.notifications.comments
     const [filtered, setFiltered] = useState<NotificationType>({
         requests: [],
         likes: [],

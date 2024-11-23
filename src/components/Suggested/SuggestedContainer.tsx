@@ -23,25 +23,31 @@ const SuggestedContainer = () => {
         if (!isFriend) return notUser
     })
     return (
-        <div className="my-card">
-            <div className="suggest-head d-flex mb-2">
-                <span>People you may know</span>
-                <div className="suggest-icon pointer">
-                    <FontAwesomeIcon icon={faEllipsis}></FontAwesomeIcon>
+        <>
+            {
+                suggested.length > 0 &&
+                <div className="my-card">
+                    <div className="suggest-head d-flex mb-2">
+                        <span>People you may know</span>
+                        <div className="suggest-icon pointer">
+                            <FontAwesomeIcon icon={faEllipsis}></FontAwesomeIcon>
+                        </div>
+                    </div>
+                    <Swiper
+                        spaceBetween={5}
+                        slidesPerView={2.5}
+                        modules={[Navigation]}
+                        navigation
+                    >
+                        {
+
+                            suggested.map(e => <SwiperSlide className="card" key={e.id}><Suggested user={e} /></SwiperSlide>)
+                        }
+                    </Swiper>
+
                 </div>
-            </div>
-            <Swiper
-                spaceBetween={5}
-                slidesPerView={2.5}
-                modules={[Navigation]}
-                navigation
-            >
-                {
-                    suggested.length > 0 &&
-                    suggested.map(e => <SwiperSlide className="card" key={e.id}><Suggested user={e} /></SwiperSlide>)
-                }
-            </Swiper>
-        </div>
+            }
+        </>
     )
 }
 

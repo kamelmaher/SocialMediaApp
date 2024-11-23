@@ -13,14 +13,15 @@ import SignUp from './components/Login/SignUp.tsx'
 import LoginPageContainer from './components/Login/LoginPageContainer.tsx'
 import ViewPost from './components/Post/ViewPost.tsx'
 import FriendsRequests from './components/UserPage/FriendsRequests.tsx'
+import Loader from './Loader.tsx'
 const router = createBrowserRouter(
     createRoutesFromElements(
-        <Route>
+        <Route path='/' element={<Loader />}>
             <Route path='auth/' element={<LoginPageContainer />}>
                 <Route path='login' element={<Login />} />
                 <Route path='signup' element={<SignUp />} />
             </Route>
-            <Route path='/' element={<Layout />}>
+            <Route element={<Layout />}>
                 <Route path='/' element={<Home />}></Route>
                 <Route path='/list/:id' element={<List />}></Route>
                 <Route path='/post/:postId' element={<ViewPost />} />

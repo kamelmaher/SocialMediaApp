@@ -7,8 +7,8 @@ import UserSection from "./UserSection"
 import PostContainer from "../Post/PostContainer"
 import { useAppDispatch, useAppSelector } from "../../Store/Store"
 import { useEffect, useRef, useState } from "react"
-import { getLoginnedUser, getUsers, updateUser } from "../../Store/UserSlice"
-import { getPosts, updatePosts } from "../../Store/PostSlice"
+import { updateUser } from "../../Store/UserSlice"
+import { updatePosts } from "../../Store/PostSlice"
 import UserImg from "./UserImg"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Adding from "../Adding"
@@ -24,11 +24,10 @@ const User = () => {
     const users = useAppSelector(state => state.User.users)
     const user = users.filter(e => e.id == +userId!)[0]
     const loginnedUser = useAppSelector(state => state.User.loginnedUser)
-    const friends = users.filter(user => {
-        loginnedUser.friends.map(e => {
-            if (e == user.id) return e
-        })
-    })
+
+
+    // Friends 
+    const friends = loginnedUser.friends
 
     const posts = useAppSelector(state => state.Post.posts)
     const userPosts = posts.filter(e => e.user.id == user.id)
@@ -71,9 +70,6 @@ const User = () => {
     }
 
     useEffect(() => {
-        dispatch(getPosts())
-        dispatch(getUsers())
-        dispatch(getLoginnedUser())
         scrollTo(0, 0)
     }, [])
 

@@ -22,7 +22,7 @@ const CreatePost = () => {
     return (
         <div className="my-card">
             <div className="d-flex gap-2">
-                <UserImg className="post-img" />
+                <UserImg myUser={loginnedUser} className="post-img" />
                 <div className="post-text">
                     <p className="post-input" onClick={() => {
                         setIsVisible(true)

@@ -64,3 +64,7 @@ hr {
 .swiper-button-disabled {
     display: none !important;
 }
+
+.hover:hover {
+    background-color: var(--hover-color);
+}
