@@ -27,7 +27,7 @@ const User = () => {
 
 
     // Friends 
-    const friends = loginnedUser.friends
+    const friends = user && user.friends
 
     const posts = useAppSelector(state => state.Post.posts)
     const userPosts = posts.filter(e => e.user.id == user.id)
@@ -61,6 +61,7 @@ const User = () => {
     const handleFormChild = (e: boolean) => {
         setIsVisible(e)
     }
+
     const changePhoto = () => {
         const userUpdated: UserType = { ...user, img: newImg }
         dispatch(updateUser(userUpdated))
@@ -71,7 +72,7 @@ const User = () => {
 
     useEffect(() => {
         scrollTo(0, 0)
-    }, [])
+    }, [userId])
 
     return (
         <div>

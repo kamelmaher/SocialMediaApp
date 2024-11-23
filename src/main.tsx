@@ -14,6 +14,7 @@ import LoginPageContainer from './components/Login/LoginPageContainer.tsx'
 import ViewPost from './components/Post/ViewPost.tsx'
 import FriendsRequests from './components/UserPage/FriendsRequests.tsx'
 import Loader from './Loader.tsx'
+import ProtectedRoute from './ProtectedRoute.tsx'
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path='/' element={<Loader />}>
@@ -21,13 +22,15 @@ const router = createBrowserRouter(
                 <Route path='login' element={<Login />} />
                 <Route path='signup' element={<SignUp />} />
             </Route>
-            <Route element={<Layout />}>
-                <Route path='/' element={<Home />}></Route>
-                <Route path='/list/:id' element={<List />}></Route>
-                <Route path='/post/:postId' element={<ViewPost />} />
-                <Route path='/requests' element={<FriendsRequests />} />
+            <Route path='/' element={<ProtectedRoute />}>
+                <Route element={<Layout />}>
+                    <Route path='/' element={<Home />}></Route>
+                    <Route path='/list/:id' element={<List />}></Route>
+                    <Route path='/post/:postId' element={<ViewPost />} />
+                    <Route path='/requests' element={<FriendsRequests />} />
+                </Route>
+                <Route path='/user/:userId' element={<User />}></Route>
             </Route>
-            <Route path='/user/:userId' element={<User />}></Route>
         </Route>
     )
 )

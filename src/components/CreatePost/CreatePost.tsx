@@ -33,7 +33,7 @@ const CreatePost = () => {
             <div className="row">
                 {
                     types.map((e, i) => {
-                        return <PostType key={e} postType={e} icon={icons[i]} color={colors[i]} />
+                        return <PostType key={e} postType={e} icon={icons[i]} color={colors[i]} handleFromChild={handleFormChild} />
                     })
                 }
             </div>

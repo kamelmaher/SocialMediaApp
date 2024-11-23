@@ -6,15 +6,17 @@ import SearchComponent from "./SearchComponent"
 import logo from "../../img/icons/facebook.png"
 import { faFacebookMessenger } from "@fortawesome/free-brands-svg-icons"
 import { useState } from "react"
-import UserImg from "../components/UserPage/UserImg"
 import { useAppSelector } from "../Store/Store"
 import Menu from "./Menu"
+import UserImg from "../components/UserPage/UserImg"
 
 const TopBar = () => {
-    const [visible, setVisible] = useState(false)
+    const [menuVisible, setMenuVisible] = useState(false)
+    const [userMenuVisible, setUserMenuVisible] = useState(false)
     const handleFormChild = (e: boolean) => {
-        setVisible(e)
+        setMenuVisible(e)
     }
+
     const icons = [faFacebookMessenger, faTableCells, faBell]
     const pages = [faHouse, faUserGroup, faUserCircle]
 
@@ -31,7 +33,7 @@ const TopBar = () => {
                         width: "40px"
                     }} />
                 </div>
-                
+
                 <SearchComponent />
             </div>
             <div className="col-6 main-navbar d-none d-lg-block ">
@@ -53,7 +55,7 @@ const TopBar = () => {
                     icons.map((e, i) => {
                         return <div key={i} className="col-2 me-2" style={{ position: "relative" }} onClick={() => {
                             if (e == faBell) {
-                                setVisible(!visible)
+                                setMenuVisible(!menuVisible)
                             }
                         }}>
                             {
@@ -67,12 +69,31 @@ const TopBar = () => {
                         </div>
                     })
                 }
-                <div className="col-2">
-                    <div className="profile-img">
-                        <UserImg myUser={user} />
+                <div className="col-2" onClick={() => setUserMenuVisible(true)}>
+                    <div className="profile-img pointer">
+                        <img src={user.img} alt="" className="rounded-circle" style={{ width: "45px", height: "45px" }} />
                     </div>
                 </div>
-                <Menu visible={visible} handleFromChild={handleFormChild} />
+                {
+                    userMenuVisible &&
+                    <div className="user-menu">
+                        <div className="my-card mt-0 text-start">
+                            <div className="d-flex gap-2 hover pointer p-2 ps-0" onClick={() => navigate(`user/${user.id}`)}>
+                                <UserImg myUser={user} style={{ width: "30px", height: "30px" }} />
+                                <div>
+                                    <p style={{ fontSize: "14px" }}>{user.fname} {user.lname}</p>
+                                </div>
+                            </div>
+                            <div className="log-out hover p-2 pointer" onClick={() => {
+                                localStorage.setItem("loginnedUser", JSON.stringify("No User"))
+                                navigate("/auth/login")
+                            }}>
+                                <p>LogOut</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <Menu visible={menuVisible} handleFromChild={handleFormChild} />
             </div>
         </div>
     )

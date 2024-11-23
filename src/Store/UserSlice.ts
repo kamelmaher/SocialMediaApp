@@ -111,10 +111,11 @@ export const UserSlice = createSlice({
           break;
 
         case "comment": {
-          user.notifications.comments.push({
-            ...action.payload,
-            userId: state.loginnedUser.id,
-          });
+          if (state.loginnedUser.id != action.payload.userId)
+            user.notifications.comments.push({
+              ...action.payload,
+              userId: state.loginnedUser.id,
+            });
           break;
         }
 

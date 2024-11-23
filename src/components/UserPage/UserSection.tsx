@@ -45,16 +45,21 @@ const UserSection = ({ text, images, friends }: UserSectionProps) => {
                 }
                 {
                     myFriends &&
-                    myFriends.map(e => {
-                        return <div key={e.id} className="col-4 p-1 pointer" onClick={() => navigate(`/user/${e.id}`)}>
-                            <div className="img">
-                                <img src={e.img} style={{ width: "100%", height: "150px", objectFit: "cover" }} />
-                            </div>
-                            <div className="name mt-2 text-center" style={{ fontSize: "14px" }}>
-                                <h6>{e.fname} {e.lname}</h6>
-                            </div>
-                        </div>
-                    })
+                    <>
+                        {
+                            myFriends.length > 0 ?
+                                myFriends.map(e => {
+                                    return <div key={e.id} className="col-4 p-1 pointer" onClick={() => navigate(`/user/${e.id}`)}>
+                                        <div className="img">
+                                            <img src={e.img} style={{ width: "100%", height: "150px", objectFit: "cover" }} />
+                                        </div>
+                                        <div className="name mt-2 text-center" style={{ fontSize: "14px" }}>
+                                            <h6>{e.fname} {e.lname}</h6>
+                                        </div>
+                                    </div>
+                                }) : <p>No Friends</p>
+                        }
+                    </>
                 }
             </div>
         </div>

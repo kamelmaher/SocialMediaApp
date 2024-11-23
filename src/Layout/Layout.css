@@ -102,6 +102,15 @@
     font-size: 12px;
 }
 
+.user-menu {
+    position: absolute;
+    width: 150px !important;
+    right: -10px;
+    bottom: 0;
+    transform: translateY(100%);
+
+}
+
 .sidebar {
     position: fixed;
     height: 100%;
